@@ -1,0 +1,22 @@
+{
+  "Memory Report": {
+    "Name": "nanodet-quant-ppe",
+    "Runtime Memory Physical Size": "3.16MB",
+    "Model Memory Physical Size": "2.69MB",
+    "Reserved Memory": "1.00KB",
+    "Memory Usage": "5.85MB",
+    "Total Memory Available On Chip": "8.00MB",
+    "Memory Utilization": "74%",
+    "Fit In Chip": true,
+    "Input Persistent": true,
+    "Networks": [
+      {
+        "Hash": "nanodet-quant-ppe",
+        "Name": "nanodet-quant-ppe",
+        "Runtime Memory Physical Size": "3.16MB",
+        "Model Memory Physical Size": "2.69MB",
+        "Input Persistence Cost": "511.00KB"
+      }
+    ]
+  }
+}
