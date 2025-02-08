@@ -1,0 +1,2 @@
+
+{"inference_rate": 23, "task": "object detection", "classes": {"ignore_undefined": true, "labels": ["Rocks-lAGt", "Float_Rock", "stone"]}, "cpu": {"post_processing": "nanodet"}}
