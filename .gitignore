@@ -1,3 +1,8 @@
+#Cloned folders
+nanodet/
+Rock-Detection-1/
+local_mct/
+workspace/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
