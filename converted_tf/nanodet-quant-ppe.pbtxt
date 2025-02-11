@@ -344,10 +344,10 @@ layer {
 layer {
   name: "Concat: keras_quantization_wrapper_concat"
   type: "Concat"
-  bottom: "keras_quantization_wrapper_pf(0;0):0"
   bottom: "keras_quantization_wrapper_pf(1;0):0"
   bottom: "keras_quantization_wrapper_pf(0;1):0"
   bottom: "keras_quantization_wrapper_pf(1;1):0"
+  bottom: "keras_quantization_wrapper_pf(0;0):0"
   top: "keras_quantization_wrapper_concat:0"
     scale_param {
     "InputShapes": "209x209x3, 209x209x3, 209x209x3, 209x209x3"
@@ -389,8 +389,8 @@ layer {
     "Quantize[mn,mx]": [-1024.0, 1024.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_kernel_pf:0"
-    "ConstInputs": "leaky_re_lu_slope:0"
     "ConstInputs": "keras_quantization_wrapper_bias:0"
+    "ConstInputs": "leaky_re_lu_slope:0"
     "RuntimeMemory": "1.32MB"
     "ScheduleId": "343"
 
@@ -405,12 +405,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 24
     }
   }
   blobs {
     shape {
-      dim: 24
+      dim: 1
     }
   }
 }
@@ -425,8 +425,8 @@ layer {
     "Quantize[mn,mx]": [-64.0, 64.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_kernel_pf:0"
-    "ConstInputs": "leaky_re_lu_slope:0"
     "ConstInputs": "keras_quantization_wrapper_bias:0"
+    "ConstInputs": "leaky_re_lu_slope:0"
     "RuntimeMemory": "1.32MB"
     
   }
@@ -547,7 +547,7 @@ layer {
     scale_param {
     "InputShapes": "104x104x24, 3x3x1x24, 24"
     "OutputShape": "52x52x24"
-    "Quantize[mn,mx]": [-64.0, 64.0]
+    "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_2_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_2_bias:0"
@@ -607,7 +607,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x24, 1x1x24x88, 88"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-256.0, 256.0]
+    "Quantize[mn,mx]": [-512.0, 512.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_3_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_3_bias:0"
@@ -643,7 +643,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x88, 1"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_3_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_3_bias:0"
@@ -661,7 +661,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x88, 1x1x88x88, 88"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-256.0, 256.0]
+    "Quantize[mn,mx]": [-512.0, 512.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_5_kernel:0"
     "ConstInputs": "backbone.stage2.0.branch2.7_slope:0"
@@ -697,7 +697,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x88, 1"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_5_kernel:0"
     "ConstInputs": "backbone.stage2.0.branch2.7_slope:0"
@@ -710,13 +710,13 @@ layer {
 layer {
   name: "Concat: backbone.stage2.0/concat_2"
   type: "Concat"
-  bottom: "backbone.stage2.0.branch1.4:0"
   bottom: "backbone.stage2.0.branch2.7:0"
+  bottom: "backbone.stage2.0.branch1.4:0"
   top: "backbone.stage2.0/concat_2:0"
     scale_param {
     "InputShapes": "52x52x88, 52x52x88"
     "OutputShape": "52x52x176"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "507.00KB"
@@ -733,7 +733,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x176"
     "OutputShape": "52x52x176"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "572.00KB"
@@ -750,7 +750,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x176"
     "OutputShape": "52x52x2x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "HasScratch": "true"
     
@@ -768,7 +768,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x2x88"
     "OutputShape": "52x52x2x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "572.00KB"
@@ -785,7 +785,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x2x88"
     "OutputShape": "52x52x88x2"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "572.00KB"
@@ -802,7 +802,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x88x2"
     "OutputShape": "52x52x88x2"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "572.00KB"
@@ -819,7 +819,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x88x2"
     "OutputShape": "52x52x176"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "HasScratch": "true"
     
@@ -837,7 +837,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x176"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
@@ -854,7 +854,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x176"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
@@ -864,14 +864,14 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-36-tf.__operators__.getitem"
+  name: "Transform: transform-35-tf.__operators__.getitem"
   type: "Transform"
   bottom: "tf.__operators__.getitem:0"
-  top: "transform-36-tf.__operators__.getitem:0"
+  top: "transform-35-tf.__operators__.getitem:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "253.50KB"
@@ -881,14 +881,14 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-31-tf.__operators__.getitem_1"
+  name: "Transform: transform-30-tf.__operators__.getitem_1"
   type: "Transform"
   bottom: "tf.__operators__.getitem_1:0"
-  top: "transform-31-tf.__operators__.getitem_1:0"
+  top: "transform-30-tf.__operators__.getitem_1:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "253.50KB"
@@ -900,7 +900,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_6"
   type: "Convolution"
-  bottom: "transform-31-tf.__operators__.getitem_1:0"
+  bottom: "transform-30-tf.__operators__.getitem_1:0"
   top: "backbone.stage2.1.branch2.2:0"
     scale_param {
     "InputShapes": "52x52x88, 1x1x88x88, 88"
@@ -908,8 +908,8 @@ layer {
     "Quantize[mn,mx]": [-512.0, 512.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_6_kernel:0"
-    "ConstInputs": "backbone.stage2.1.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_6_bias:0"
+    "ConstInputs": "backbone.stage2.1.branch2.2_slope:0"
     "RuntimeMemory": "253.50KB"
     "ScheduleId": "368"
 
@@ -924,12 +924,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 88
     }
   }
   blobs {
     shape {
-      dim: 88
+      dim: 1
     }
   }
 }
@@ -944,8 +944,8 @@ layer {
     "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_6_kernel:0"
-    "ConstInputs": "backbone.stage2.1.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_6_bias:0"
+    "ConstInputs": "backbone.stage2.1.branch2.2_slope:0"
     "RuntimeMemory": "253.50KB"
     
   }
@@ -1036,10 +1036,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-30-keras_quantization_wrapper_8"
+  name: "Transform: transform-29-keras_quantization_wrapper_8"
   type: "Transform"
   bottom: "backbone.stage2.1.branch2.7:0"
-  top: "transform-30-keras_quantization_wrapper_8:0"
+  top: "transform-29-keras_quantization_wrapper_8:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
@@ -1055,8 +1055,8 @@ layer {
 layer {
   name: "Concat: backbone.stage2.1/concat_1"
   type: "Concat"
-  bottom: "transform-30-keras_quantization_wrapper_8:0"
-  bottom: "transform-36-tf.__operators__.getitem:0"
+  bottom: "transform-35-tf.__operators__.getitem:0"
+  bottom: "transform-29-keras_quantization_wrapper_8:0"
   top: "backbone.stage2.1/concat_1:0"
     scale_param {
     "InputShapes": "52x52x88, 52x52x88"
@@ -1209,10 +1209,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-37-tf.__operators__.getitem_2"
+  name: "Transform: transform-36-tf.__operators__.getitem_2"
   type: "Transform"
   bottom: "tf.__operators__.getitem_2:0"
-  top: "transform-37-tf.__operators__.getitem_2:0"
+  top: "transform-36-tf.__operators__.getitem_2:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
@@ -1226,10 +1226,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-29-tf.__operators__.getitem_3"
+  name: "Transform: transform-28-tf.__operators__.getitem_3"
   type: "Transform"
   bottom: "tf.__operators__.getitem_3:0"
-  top: "transform-29-tf.__operators__.getitem_3:0"
+  top: "transform-28-tf.__operators__.getitem_3:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
@@ -1245,7 +1245,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_9"
   type: "Convolution"
-  bottom: "transform-29-tf.__operators__.getitem_3:0"
+  bottom: "transform-28-tf.__operators__.getitem_3:0"
   top: "backbone.stage2.2.branch2.2:0"
     scale_param {
     "InputShapes": "52x52x88, 1x1x88x88, 88"
@@ -1253,8 +1253,8 @@ layer {
     "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_9_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_9_bias:0"
     "ConstInputs": "backbone.stage2.2.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_9_bias:0"
     "RuntimeMemory": "253.50KB"
     "ScheduleId": "386"
 
@@ -1269,12 +1269,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 88
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 88
     }
   }
 }
@@ -1289,8 +1289,8 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_9_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_9_bias:0"
     "ConstInputs": "backbone.stage2.2.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_9_bias:0"
     "RuntimeMemory": "253.50KB"
     
   }
@@ -1334,11 +1334,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x88, 1x1x88x88, 88"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-256.0, 256.0]
+    "Quantize[mn,mx]": [-512.0, 512.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_11_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_11_bias:0"
     "ConstInputs": "backbone.stage2.2.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_11_bias:0"
     "RuntimeMemory": "253.50KB"
     "ScheduleId": "389"
 
@@ -1353,12 +1353,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 88
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 88
     }
   }
 }
@@ -1370,25 +1370,25 @@ layer {
     scale_param {
     "InputShapes": "52x52x88, 1"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_11_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_11_bias:0"
     "ConstInputs": "backbone.stage2.2.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_11_bias:0"
     "RuntimeMemory": "253.50KB"
     
   }
 
 }
 layer {
-  name: "Transform: transform-28-keras_quantization_wrapper_11"
+  name: "Transform: transform-27-keras_quantization_wrapper_11"
   type: "Transform"
   bottom: "backbone.stage2.2.branch2.7:0"
-  top: "transform-28-keras_quantization_wrapper_11:0"
+  top: "transform-27-keras_quantization_wrapper_11:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "253.50KB"
@@ -1400,8 +1400,8 @@ layer {
 layer {
   name: "Concat: backbone.stage2.2/concat_1"
   type: "Concat"
-  bottom: "transform-28-keras_quantization_wrapper_11:0"
-  bottom: "transform-37-tf.__operators__.getitem_2:0"
+  bottom: "transform-27-keras_quantization_wrapper_11:0"
+  bottom: "transform-36-tf.__operators__.getitem_2:0"
   top: "backbone.stage2.2/concat_1:0"
     scale_param {
     "InputShapes": "52x52x88, 52x52x88"
@@ -1554,10 +1554,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-38-tf.__operators__.getitem_4"
+  name: "Transform: transform-37-tf.__operators__.getitem_4"
   type: "Transform"
   bottom: "tf.__operators__.getitem_4:0"
-  top: "transform-38-tf.__operators__.getitem_4:0"
+  top: "transform-37-tf.__operators__.getitem_4:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
@@ -1571,10 +1571,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-27-tf.__operators__.getitem_5"
+  name: "Transform: transform-26-tf.__operators__.getitem_5"
   type: "Transform"
   bottom: "tf.__operators__.getitem_5:0"
-  top: "transform-27-tf.__operators__.getitem_5:0"
+  top: "transform-26-tf.__operators__.getitem_5:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
@@ -1590,7 +1590,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_12"
   type: "Convolution"
-  bottom: "transform-27-tf.__operators__.getitem_5:0"
+  bottom: "transform-26-tf.__operators__.getitem_5:0"
   top: "backbone.stage2.3.branch2.2:0"
     scale_param {
     "InputShapes": "52x52x88, 1x1x88x88, 88"
@@ -1682,8 +1682,8 @@ layer {
     "Quantize[mn,mx]": [-512.0, 512.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_14_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_14_bias:0"
     "ConstInputs": "backbone.stage2.3.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_14_bias:0"
     "RuntimeMemory": "253.50KB"
     "ScheduleId": "407"
 
@@ -1698,12 +1698,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 88
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 88
     }
   }
 }
@@ -1718,18 +1718,18 @@ layer {
     "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_14_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_14_bias:0"
     "ConstInputs": "backbone.stage2.3.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_14_bias:0"
     "RuntimeMemory": "253.50KB"
     
   }
 
 }
 layer {
-  name: "Transform: transform-26-keras_quantization_wrapper_14"
+  name: "Transform: transform-25-keras_quantization_wrapper_14"
   type: "Transform"
   bottom: "backbone.stage2.3.branch2.7:0"
-  top: "transform-26-keras_quantization_wrapper_14:0"
+  top: "transform-25-keras_quantization_wrapper_14:0"
     scale_param {
     "InputShapes": "52x52x88"
     "OutputShape": "52x52x88"
@@ -1745,8 +1745,8 @@ layer {
 layer {
   name: "Concat: backbone.stage2.3/concat_1"
   type: "Concat"
-  bottom: "transform-38-tf.__operators__.getitem_4:0"
-  bottom: "transform-26-keras_quantization_wrapper_14:0"
+  bottom: "transform-37-tf.__operators__.getitem_4:0"
+  bottom: "transform-25-keras_quantization_wrapper_14:0"
   top: "backbone.stage2.3/concat_1:0"
     scale_param {
     "InputShapes": "52x52x88, 52x52x88"
@@ -1882,10 +1882,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-25-tf.reshape_7"
+  name: "Transform: transform-24-tf.reshape_7"
   type: "Transform"
   bottom: "tf.reshape_7:0"
-  top: "transform-25-tf.reshape_7:0"
+  top: "transform-24-tf.reshape_7:0"
     scale_param {
     "InputShapes": "52x52x176"
     "OutputShape": "52x52x176"
@@ -1926,8 +1926,8 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_15_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_15_bias:0"
     "ConstInputs": "leaky_re_lu_1_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_15_bias:0"
     "RuntimeMemory": "338.00KB"
     "ScheduleId": "420"
 
@@ -1942,12 +1942,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
 }
@@ -1962,8 +1962,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_15_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_15_bias:0"
     "ConstInputs": "leaky_re_lu_1_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_15_bias:0"
     "RuntimeMemory": "338.00KB"
     
   }
@@ -1972,7 +1972,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_16"
   type: "Convolution"
-  bottom: "transform-25-tf.reshape_7:0"
+  bottom: "transform-24-tf.reshape_7:0"
   top: "backbone.stage3.0.branch2.2:0"
     scale_param {
     "InputShapes": "52x52x176, 1x1x176x176, 176"
@@ -1980,8 +1980,8 @@ layer {
     "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_16_kernel:0"
-    "ConstInputs": "backbone.stage3.0.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_16_bias:0"
+    "ConstInputs": "backbone.stage3.0.branch2.2_slope:0"
     "RuntimeMemory": "507.00KB"
     "ScheduleId": "422"
 
@@ -1996,12 +1996,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 176
     }
   }
   blobs {
     shape {
-      dim: 176
+      dim: 1
     }
   }
 }
@@ -2016,8 +2016,8 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_16_kernel:0"
-    "ConstInputs": "backbone.stage3.0.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_16_bias:0"
+    "ConstInputs": "backbone.stage3.0.branch2.2_slope:0"
     "RuntimeMemory": "507.00KB"
     
   }
@@ -2194,8 +2194,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.0/concat_2"
   type: "Concat"
-  bottom: "backbone.stage3.0.branch1.4:0"
   bottom: "backbone.stage3.0.branch2.7:0"
+  bottom: "backbone.stage3.0.branch1.4:0"
   top: "backbone.stage3.0/concat_2:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -2348,10 +2348,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-39-tf.__operators__.getitem_6"
+  name: "Transform: transform-38-tf.__operators__.getitem_6"
   type: "Transform"
   bottom: "tf.__operators__.getitem_6:0"
-  top: "transform-39-tf.__operators__.getitem_6:0"
+  top: "transform-38-tf.__operators__.getitem_6:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -2365,10 +2365,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-24-tf.__operators__.getitem_7"
+  name: "Transform: transform-23-tf.__operators__.getitem_7"
   type: "Transform"
   bottom: "tf.__operators__.getitem_7:0"
-  top: "transform-24-tf.__operators__.getitem_7:0"
+  top: "transform-23-tf.__operators__.getitem_7:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -2384,7 +2384,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_21"
   type: "Convolution"
-  bottom: "transform-24-tf.__operators__.getitem_7:0"
+  bottom: "transform-23-tf.__operators__.getitem_7:0"
   top: "backbone.stage3.1.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x176, 1x1x176x176, 176"
@@ -2520,10 +2520,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-23-keras_quantization_wrapper_23"
+  name: "Transform: transform-22-keras_quantization_wrapper_23"
   type: "Transform"
   bottom: "backbone.stage3.1.branch2.7:0"
-  top: "transform-23-keras_quantization_wrapper_23:0"
+  top: "transform-22-keras_quantization_wrapper_23:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -2539,8 +2539,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.1/concat_1"
   type: "Concat"
-  bottom: "transform-39-tf.__operators__.getitem_6:0"
-  bottom: "transform-23-keras_quantization_wrapper_23:0"
+  bottom: "transform-38-tf.__operators__.getitem_6:0"
+  bottom: "transform-22-keras_quantization_wrapper_23:0"
   top: "backbone.stage3.1/concat_1:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -2693,10 +2693,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-40-tf.__operators__.getitem_8"
+  name: "Transform: transform-39-tf.__operators__.getitem_8"
   type: "Transform"
   bottom: "tf.__operators__.getitem_8:0"
-  top: "transform-40-tf.__operators__.getitem_8:0"
+  top: "transform-39-tf.__operators__.getitem_8:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -2710,10 +2710,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-22-tf.__operators__.getitem_9"
+  name: "Transform: transform-21-tf.__operators__.getitem_9"
   type: "Transform"
   bottom: "tf.__operators__.getitem_9:0"
-  top: "transform-22-tf.__operators__.getitem_9:0"
+  top: "transform-21-tf.__operators__.getitem_9:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -2729,7 +2729,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_24"
   type: "Convolution"
-  bottom: "transform-22-tf.__operators__.getitem_9:0"
+  bottom: "transform-21-tf.__operators__.getitem_9:0"
   top: "backbone.stage3.2.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x176, 1x1x176x176, 176"
@@ -2737,8 +2737,8 @@ layer {
     "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_24_kernel:0"
-    "ConstInputs": "backbone.stage3.2.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_24_bias:0"
+    "ConstInputs": "backbone.stage3.2.branch2.2_slope:0"
     "RuntimeMemory": "126.75KB"
     "ScheduleId": "460"
 
@@ -2753,12 +2753,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 176
     }
   }
   blobs {
     shape {
-      dim: 176
+      dim: 1
     }
   }
 }
@@ -2773,8 +2773,8 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_24_kernel:0"
-    "ConstInputs": "backbone.stage3.2.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_24_bias:0"
+    "ConstInputs": "backbone.stage3.2.branch2.2_slope:0"
     "RuntimeMemory": "126.75KB"
     
   }
@@ -2865,10 +2865,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-21-keras_quantization_wrapper_26"
+  name: "Transform: transform-20-keras_quantization_wrapper_26"
   type: "Transform"
   bottom: "backbone.stage3.2.branch2.7:0"
-  top: "transform-21-keras_quantization_wrapper_26:0"
+  top: "transform-20-keras_quantization_wrapper_26:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -2884,8 +2884,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.2/concat_1"
   type: "Concat"
-  bottom: "transform-40-tf.__operators__.getitem_8:0"
-  bottom: "transform-21-keras_quantization_wrapper_26:0"
+  bottom: "transform-39-tf.__operators__.getitem_8:0"
+  bottom: "transform-20-keras_quantization_wrapper_26:0"
   top: "backbone.stage3.2/concat_1:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -3038,10 +3038,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-41-tf.__operators__.getitem_10"
+  name: "Transform: transform-40-tf.__operators__.getitem_10"
   type: "Transform"
   bottom: "tf.__operators__.getitem_10:0"
-  top: "transform-41-tf.__operators__.getitem_10:0"
+  top: "transform-40-tf.__operators__.getitem_10:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3055,10 +3055,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-20-tf.__operators__.getitem_11"
+  name: "Transform: transform-19-tf.__operators__.getitem_11"
   type: "Transform"
   bottom: "tf.__operators__.getitem_11:0"
-  top: "transform-20-tf.__operators__.getitem_11:0"
+  top: "transform-19-tf.__operators__.getitem_11:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3074,16 +3074,16 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_27"
   type: "Convolution"
-  bottom: "transform-20-tf.__operators__.getitem_11:0"
+  bottom: "transform-19-tf.__operators__.getitem_11:0"
   top: "backbone.stage3.3.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x176, 1x1x176x176, 176"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_27_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_27_bias:0"
     "ConstInputs": "backbone.stage3.3.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_27_bias:0"
     "RuntimeMemory": "126.75KB"
     "ScheduleId": "478"
 
@@ -3098,12 +3098,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 176
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 176
     }
   }
 }
@@ -3115,11 +3115,11 @@ layer {
     scale_param {
     "InputShapes": "26x26x176, 1"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_27_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_27_bias:0"
     "ConstInputs": "backbone.stage3.3.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_27_bias:0"
     "RuntimeMemory": "126.75KB"
     
   }
@@ -3210,10 +3210,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-19-keras_quantization_wrapper_29"
+  name: "Transform: transform-18-keras_quantization_wrapper_29"
   type: "Transform"
   bottom: "backbone.stage3.3.branch2.7:0"
-  top: "transform-19-keras_quantization_wrapper_29:0"
+  top: "transform-18-keras_quantization_wrapper_29:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3229,8 +3229,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.3/concat_1"
   type: "Concat"
-  bottom: "transform-19-keras_quantization_wrapper_29:0"
-  bottom: "transform-41-tf.__operators__.getitem_10:0"
+  bottom: "transform-40-tf.__operators__.getitem_10:0"
+  bottom: "transform-18-keras_quantization_wrapper_29:0"
   top: "backbone.stage3.3/concat_1:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -3383,10 +3383,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-42-tf.__operators__.getitem_12"
+  name: "Transform: transform-41-tf.__operators__.getitem_12"
   type: "Transform"
   bottom: "tf.__operators__.getitem_12:0"
-  top: "transform-42-tf.__operators__.getitem_12:0"
+  top: "transform-41-tf.__operators__.getitem_12:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3400,10 +3400,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-18-tf.__operators__.getitem_13"
+  name: "Transform: transform-17-tf.__operators__.getitem_13"
   type: "Transform"
   bottom: "tf.__operators__.getitem_13:0"
-  top: "transform-18-tf.__operators__.getitem_13:0"
+  top: "transform-17-tf.__operators__.getitem_13:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3419,16 +3419,16 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_30"
   type: "Convolution"
-  bottom: "transform-18-tf.__operators__.getitem_13:0"
+  bottom: "transform-17-tf.__operators__.getitem_13:0"
   top: "backbone.stage3.4.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x176, 1x1x176x176, 176"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_30_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_30_bias:0"
     "ConstInputs": "backbone.stage3.4.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_30_bias:0"
     "RuntimeMemory": "126.75KB"
     "ScheduleId": "496"
 
@@ -3443,12 +3443,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 176
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 176
     }
   }
 }
@@ -3460,11 +3460,11 @@ layer {
     scale_param {
     "InputShapes": "26x26x176, 1"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_30_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_30_bias:0"
     "ConstInputs": "backbone.stage3.4.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_30_bias:0"
     "RuntimeMemory": "126.75KB"
     
   }
@@ -3478,7 +3478,7 @@ layer {
     scale_param {
     "InputShapes": "26x26x176, 3x3x1x176, 176"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_31_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_31_bias:0"
@@ -3511,8 +3511,8 @@ layer {
     "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_32_kernel:0"
-    "ConstInputs": "backbone.stage3.4.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_32_bias:0"
+    "ConstInputs": "backbone.stage3.4.branch2.7_slope:0"
     "RuntimeMemory": "126.75KB"
     "ScheduleId": "499"
 
@@ -3527,12 +3527,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 176
     }
   }
   blobs {
     shape {
-      dim: 176
+      dim: 1
     }
   }
 }
@@ -3547,18 +3547,18 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_32_kernel:0"
-    "ConstInputs": "backbone.stage3.4.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_32_bias:0"
+    "ConstInputs": "backbone.stage3.4.branch2.7_slope:0"
     "RuntimeMemory": "126.75KB"
     
   }
 
 }
 layer {
-  name: "Transform: transform-17-keras_quantization_wrapper_32"
+  name: "Transform: transform-16-keras_quantization_wrapper_32"
   type: "Transform"
   bottom: "backbone.stage3.4.branch2.7:0"
-  top: "transform-17-keras_quantization_wrapper_32:0"
+  top: "transform-16-keras_quantization_wrapper_32:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3574,8 +3574,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.4/concat_1"
   type: "Concat"
-  bottom: "transform-42-tf.__operators__.getitem_12:0"
-  bottom: "transform-17-keras_quantization_wrapper_32:0"
+  bottom: "transform-41-tf.__operators__.getitem_12:0"
+  bottom: "transform-16-keras_quantization_wrapper_32:0"
   top: "backbone.stage3.4/concat_1:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -3728,10 +3728,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-43-tf.__operators__.getitem_14"
+  name: "Transform: transform-42-tf.__operators__.getitem_14"
   type: "Transform"
   bottom: "tf.__operators__.getitem_14:0"
-  top: "transform-43-tf.__operators__.getitem_14:0"
+  top: "transform-42-tf.__operators__.getitem_14:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3745,10 +3745,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-16-tf.__operators__.getitem_15"
+  name: "Transform: transform-15-tf.__operators__.getitem_15"
   type: "Transform"
   bottom: "tf.__operators__.getitem_15:0"
-  top: "transform-16-tf.__operators__.getitem_15:0"
+  top: "transform-15-tf.__operators__.getitem_15:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3764,12 +3764,12 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_33"
   type: "Convolution"
-  bottom: "transform-16-tf.__operators__.getitem_15:0"
+  bottom: "transform-15-tf.__operators__.getitem_15:0"
   top: "backbone.stage3.5.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x176, 1x1x176x176, 176"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_33_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_33_bias:0"
@@ -3805,7 +3805,7 @@ layer {
     scale_param {
     "InputShapes": "26x26x176, 1"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_33_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_33_bias:0"
@@ -3900,10 +3900,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-15-keras_quantization_wrapper_35"
+  name: "Transform: transform-14-keras_quantization_wrapper_35"
   type: "Transform"
   bottom: "backbone.stage3.5.branch2.7:0"
-  top: "transform-15-keras_quantization_wrapper_35:0"
+  top: "transform-14-keras_quantization_wrapper_35:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -3919,8 +3919,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.5/concat_1"
   type: "Concat"
-  bottom: "transform-15-keras_quantization_wrapper_35:0"
-  bottom: "transform-43-tf.__operators__.getitem_14:0"
+  bottom: "transform-14-keras_quantization_wrapper_35:0"
+  bottom: "transform-42-tf.__operators__.getitem_14:0"
   top: "backbone.stage3.5/concat_1:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -4073,10 +4073,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-44-tf.__operators__.getitem_16"
+  name: "Transform: transform-43-tf.__operators__.getitem_16"
   type: "Transform"
   bottom: "tf.__operators__.getitem_16:0"
-  top: "transform-44-tf.__operators__.getitem_16:0"
+  top: "transform-43-tf.__operators__.getitem_16:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -4090,10 +4090,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-14-tf.__operators__.getitem_17"
+  name: "Transform: transform-13-tf.__operators__.getitem_17"
   type: "Transform"
   bottom: "tf.__operators__.getitem_17:0"
-  top: "transform-14-tf.__operators__.getitem_17:0"
+  top: "transform-13-tf.__operators__.getitem_17:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -4109,12 +4109,12 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_36"
   type: "Convolution"
-  bottom: "transform-14-tf.__operators__.getitem_17:0"
+  bottom: "transform-13-tf.__operators__.getitem_17:0"
   top: "backbone.stage3.6.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x176, 1x1x176x176, 176"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_36_kernel:0"
     "ConstInputs": "backbone.stage3.6.branch2.2_slope:0"
@@ -4150,7 +4150,7 @@ layer {
     scale_param {
     "InputShapes": "26x26x176, 1"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_36_kernel:0"
     "ConstInputs": "backbone.stage3.6.branch2.2_slope:0"
@@ -4168,7 +4168,7 @@ layer {
     scale_param {
     "InputShapes": "26x26x176, 3x3x1x176, 176"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-16.0, 16.0]
+    "Quantize[mn,mx]": [-32.0, 32.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_37_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_37_bias:0"
@@ -4201,8 +4201,8 @@ layer {
     "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_38_kernel:0"
-    "ConstInputs": "backbone.stage3.6.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_38_bias:0"
+    "ConstInputs": "backbone.stage3.6.branch2.7_slope:0"
     "RuntimeMemory": "126.75KB"
     "ScheduleId": "535"
 
@@ -4217,12 +4217,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 176
     }
   }
   blobs {
     shape {
-      dim: 176
+      dim: 1
     }
   }
 }
@@ -4237,18 +4237,18 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_38_kernel:0"
-    "ConstInputs": "backbone.stage3.6.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_38_bias:0"
+    "ConstInputs": "backbone.stage3.6.branch2.7_slope:0"
     "RuntimeMemory": "126.75KB"
     
   }
 
 }
 layer {
-  name: "Transform: transform-13-keras_quantization_wrapper_38"
+  name: "Transform: transform-12-keras_quantization_wrapper_38"
   type: "Transform"
   bottom: "backbone.stage3.6.branch2.7:0"
-  top: "transform-13-keras_quantization_wrapper_38:0"
+  top: "transform-12-keras_quantization_wrapper_38:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -4264,8 +4264,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.6/concat_1"
   type: "Concat"
-  bottom: "transform-44-tf.__operators__.getitem_16:0"
-  bottom: "transform-13-keras_quantization_wrapper_38:0"
+  bottom: "transform-43-tf.__operators__.getitem_16:0"
+  bottom: "transform-12-keras_quantization_wrapper_38:0"
   top: "backbone.stage3.6/concat_1:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -4418,10 +4418,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-45-tf.__operators__.getitem_18"
+  name: "Transform: transform-44-tf.__operators__.getitem_18"
   type: "Transform"
   bottom: "tf.__operators__.getitem_18:0"
-  top: "transform-45-tf.__operators__.getitem_18:0"
+  top: "transform-44-tf.__operators__.getitem_18:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -4435,10 +4435,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-12-tf.__operators__.getitem_19"
+  name: "Transform: transform-11-tf.__operators__.getitem_19"
   type: "Transform"
   bottom: "tf.__operators__.getitem_19:0"
-  top: "transform-12-tf.__operators__.getitem_19:0"
+  top: "transform-11-tf.__operators__.getitem_19:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -4454,16 +4454,16 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_39"
   type: "Convolution"
-  bottom: "transform-12-tf.__operators__.getitem_19:0"
+  bottom: "transform-11-tf.__operators__.getitem_19:0"
   top: "backbone.stage3.7.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x176, 1x1x176x176, 176"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_39_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_39_bias:0"
     "ConstInputs": "backbone.stage3.7.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_39_bias:0"
     "RuntimeMemory": "126.75KB"
     "ScheduleId": "550"
 
@@ -4478,12 +4478,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 176
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 176
     }
   }
 }
@@ -4495,11 +4495,11 @@ layer {
     scale_param {
     "InputShapes": "26x26x176, 1"
     "OutputShape": "26x26x176"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_39_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_39_bias:0"
     "ConstInputs": "backbone.stage3.7.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_39_bias:0"
     "RuntimeMemory": "126.75KB"
     
   }
@@ -4590,10 +4590,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-11-keras_quantization_wrapper_41"
+  name: "Transform: transform-10-keras_quantization_wrapper_41"
   type: "Transform"
   bottom: "backbone.stage3.7.branch2.7:0"
-  top: "transform-11-keras_quantization_wrapper_41:0"
+  top: "transform-10-keras_quantization_wrapper_41:0"
     scale_param {
     "InputShapes": "26x26x176"
     "OutputShape": "26x26x176"
@@ -4609,8 +4609,8 @@ layer {
 layer {
   name: "Concat: backbone.stage3.7/concat_1"
   type: "Concat"
-  bottom: "transform-11-keras_quantization_wrapper_41:0"
-  bottom: "transform-45-tf.__operators__.getitem_18:0"
+  bottom: "transform-44-tf.__operators__.getitem_18:0"
+  bottom: "transform-10-keras_quantization_wrapper_41:0"
   top: "backbone.stage3.7/concat_1:0"
     scale_param {
     "InputShapes": "26x26x176, 26x26x176"
@@ -4746,10 +4746,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-10-tf.reshape_23"
+  name: "Transform: transform-9-tf.reshape_23"
   type: "Transform"
   bottom: "tf.reshape_23:0"
-  top: "transform-10-tf.reshape_23:0"
+  top: "transform-9-tf.reshape_23:0"
     scale_param {
     "InputShapes": "26x26x352"
     "OutputShape": "26x26x352"
@@ -4757,7 +4757,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "232.38KB"
-    "ScheduleId": "567"
+    "ScheduleId": "571"
 
   }
 
@@ -4774,7 +4774,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "232.38KB"
-    "ScheduleId": "572"
+    "ScheduleId": "567"
 
   }
 
@@ -4790,8 +4790,8 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_42_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_42_bias:0"
     "ConstInputs": "leaky_re_lu_2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_42_bias:0"
     "RuntimeMemory": "84.50KB"
     "ScheduleId": "566"
 
@@ -4806,12 +4806,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
 }
@@ -4826,8 +4826,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_42_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_42_bias:0"
     "ConstInputs": "leaky_re_lu_2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_42_bias:0"
     "RuntimeMemory": "84.50KB"
     
   }
@@ -4836,7 +4836,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_43"
   type: "Convolution"
-  bottom: "transform-10-tf.reshape_23:0"
+  bottom: "transform-9-tf.reshape_23:0"
   top: "backbone.stage4.0.branch2.2:0"
     scale_param {
     "InputShapes": "26x26x352, 1x1x352x352, 352"
@@ -4844,10 +4844,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_43_kernel:0"
-    "ConstInputs": "backbone.stage4.0.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_43_bias:0"
+    "ConstInputs": "backbone.stage4.0.branch2.2_slope:0"
     "RuntimeMemory": "232.38KB"
-    "ScheduleId": "568"
+    "ScheduleId": "572"
 
   }
   blobs {
@@ -4860,12 +4860,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 352
     }
   }
   blobs {
     shape {
-      dim: 352
+      dim: 1
     }
   }
 }
@@ -4880,8 +4880,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_43_kernel:0"
-    "ConstInputs": "backbone.stage4.0.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_43_bias:0"
+    "ConstInputs": "backbone.stage4.0.branch2.2_slope:0"
     "RuntimeMemory": "232.38KB"
     
   }
@@ -4900,7 +4900,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_44_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_44_bias:0"
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "573"
+    "ScheduleId": "568"
 
   }
   blobs {
@@ -4930,7 +4930,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_46_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_46_bias:0"
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "569"
+    "ScheduleId": "573"
 
   }
   blobs {
@@ -4958,8 +4958,62 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_45_kernel:0"
-    "ConstInputs": "backbone.stage4.0.branch1.4_slope:0"
     "ConstInputs": "keras_quantization_wrapper_45_bias:0"
+    "ConstInputs": "backbone.stage4.0.branch1.4_slope:0"
+    "RuntimeMemory": "58.09KB"
+    "ScheduleId": "570"
+
+  }
+  blobs {
+    shape {
+      dim: 1
+      dim: 1
+      dim: 352
+      dim: 352
+    }
+  }
+  blobs {
+    shape {
+      dim: 352
+    }
+  }
+  blobs {
+    shape {
+      dim: 1
+    }
+  }
+}
+layer {
+  name: "Prelu: backbone.stage4.0.branch1.4"
+  type: "Prelu"
+  bottom: "backbone.stage4.0.branch1.4:0"
+  top: "backbone.stage4.0.branch1.4:0"
+    scale_param {
+    "InputShapes": "13x13x352, 1"
+    "OutputShape": "13x13x352"
+    "Quantize[mn,mx]": [-8.0, 8.0]
+    "QuantizeBits": 8
+    "ConstInputs": "keras_quantization_wrapper_45_kernel:0"
+    "ConstInputs": "keras_quantization_wrapper_45_bias:0"
+    "ConstInputs": "backbone.stage4.0.branch1.4_slope:0"
+    "RuntimeMemory": "58.09KB"
+    
+  }
+
+}
+layer {
+  name: "Conv2D: keras_quantization_wrapper_47"
+  type: "Convolution"
+  bottom: "keras_quantization_wrapper_46:0"
+  top: "backbone.stage4.0.branch2.7:0"
+    scale_param {
+    "InputShapes": "13x13x352, 1x1x352x352, 352"
+    "OutputShape": "13x13x352"
+    "Quantize[mn,mx]": [-256.0, 256.0]
+    "QuantizeBits": 16
+    "ConstInputs": "keras_quantization_wrapper_47_kernel:0"
+    "ConstInputs": "backbone.stage4.0.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_47_bias:0"
     "RuntimeMemory": "58.09KB"
     "ScheduleId": "575"
 
@@ -4984,60 +5038,6 @@ layer {
   }
 }
 layer {
-  name: "Prelu: backbone.stage4.0.branch1.4"
-  type: "Prelu"
-  bottom: "backbone.stage4.0.branch1.4:0"
-  top: "backbone.stage4.0.branch1.4:0"
-    scale_param {
-    "InputShapes": "13x13x352, 1"
-    "OutputShape": "13x13x352"
-    "Quantize[mn,mx]": [-8.0, 8.0]
-    "QuantizeBits": 8
-    "ConstInputs": "keras_quantization_wrapper_45_kernel:0"
-    "ConstInputs": "backbone.stage4.0.branch1.4_slope:0"
-    "ConstInputs": "keras_quantization_wrapper_45_bias:0"
-    "RuntimeMemory": "58.09KB"
-    
-  }
-
-}
-layer {
-  name: "Conv2D: keras_quantization_wrapper_47"
-  type: "Convolution"
-  bottom: "keras_quantization_wrapper_46:0"
-  top: "backbone.stage4.0.branch2.7:0"
-    scale_param {
-    "InputShapes": "13x13x352, 1x1x352x352, 352"
-    "OutputShape": "13x13x352"
-    "Quantize[mn,mx]": [-256.0, 256.0]
-    "QuantizeBits": 16
-    "ConstInputs": "keras_quantization_wrapper_47_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_47_bias:0"
-    "ConstInputs": "backbone.stage4.0.branch2.7_slope:0"
-    "RuntimeMemory": "58.09KB"
-    "ScheduleId": "571"
-
-  }
-  blobs {
-    shape {
-      dim: 1
-      dim: 1
-      dim: 352
-      dim: 352
-    }
-  }
-  blobs {
-    shape {
-      dim: 352
-    }
-  }
-  blobs {
-    shape {
-      dim: 1
-    }
-  }
-}
-layer {
   name: "Prelu: backbone.stage4.0.branch2.7"
   type: "Prelu"
   bottom: "backbone.stage4.0.branch2.7:0"
@@ -5048,8 +5048,8 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_47_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_47_bias:0"
     "ConstInputs": "backbone.stage4.0.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_47_bias:0"
     "RuntimeMemory": "58.09KB"
     
   }
@@ -5229,10 +5229,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-9-tf.__operators__.getitem_21"
+  name: "Transform: transform-8-tf.__operators__.getitem_21"
   type: "Transform"
   bottom: "tf.__operators__.getitem_21:0"
-  top: "transform-9-tf.__operators__.getitem_21:0"
+  top: "transform-8-tf.__operators__.getitem_21:0"
     scale_param {
     "InputShapes": "13x13x352"
     "OutputShape": "13x13x352"
@@ -5246,10 +5246,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-46-backbone.stage4.1/concat_1_qtype_pre_cast_0"
+  name: "Transform: transform-45-backbone.stage4.1/concat_1_qtype_pre_cast_0"
   type: "Transform"
   bottom: "backbone.stage4.1/concat_1_qtype_pre_cast_0:0"
-  top: "transform-46-backbone.stage4.1/concat_1_qtype_pre_cast_0:0"
+  top: "transform-45-backbone.stage4.1/concat_1_qtype_pre_cast_0:0"
     scale_param {
     "InputShapes": "13x13x352"
     "OutputShape": "13x13x352"
@@ -5265,7 +5265,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_48"
   type: "Convolution"
-  bottom: "transform-9-tf.__operators__.getitem_21:0"
+  bottom: "transform-8-tf.__operators__.getitem_21:0"
   top: "backbone.stage4.1.branch2.2:0"
     scale_param {
     "InputShapes": "13x13x352, 1x1x352x352, 352"
@@ -5273,8 +5273,8 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_48_kernel:0"
-    "ConstInputs": "backbone.stage4.1.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_48_bias:0"
+    "ConstInputs": "backbone.stage4.1.branch2.2_slope:0"
     "RuntimeMemory": "58.09KB"
     "ScheduleId": "590"
 
@@ -5289,12 +5289,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 352
     }
   }
   blobs {
     shape {
-      dim: 352
+      dim: 1
     }
   }
 }
@@ -5309,8 +5309,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_48_kernel:0"
-    "ConstInputs": "backbone.stage4.1.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_48_bias:0"
+    "ConstInputs": "backbone.stage4.1.branch2.2_slope:0"
     "RuntimeMemory": "58.09KB"
     
   }
@@ -5357,8 +5357,8 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_50_kernel:0"
-    "ConstInputs": "backbone.stage4.1.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_50_bias:0"
+    "ConstInputs": "backbone.stage4.1.branch2.7_slope:0"
     "RuntimeMemory": "58.09KB"
     "ScheduleId": "593"
 
@@ -5373,12 +5373,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 352
     }
   }
   blobs {
     shape {
-      dim: 352
+      dim: 1
     }
   }
 }
@@ -5393,18 +5393,18 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_50_kernel:0"
-    "ConstInputs": "backbone.stage4.1.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_50_bias:0"
+    "ConstInputs": "backbone.stage4.1.branch2.7_slope:0"
     "RuntimeMemory": "58.09KB"
     
   }
 
 }
 layer {
-  name: "Transform: transform-8-keras_quantization_wrapper_50"
+  name: "Transform: transform-7-keras_quantization_wrapper_50"
   type: "Transform"
   bottom: "backbone.stage4.1.branch2.7:0"
-  top: "transform-8-keras_quantization_wrapper_50:0"
+  top: "transform-7-keras_quantization_wrapper_50:0"
     scale_param {
     "InputShapes": "13x13x352"
     "OutputShape": "13x13x352"
@@ -5420,8 +5420,8 @@ layer {
 layer {
   name: "Concat: backbone.stage4.1/concat_1"
   type: "Concat"
-  bottom: "transform-46-backbone.stage4.1/concat_1_qtype_pre_cast_0:0"
-  bottom: "transform-8-keras_quantization_wrapper_50:0"
+  bottom: "transform-45-backbone.stage4.1/concat_1_qtype_pre_cast_0:0"
+  bottom: "transform-7-keras_quantization_wrapper_50:0"
   top: "backbone.stage4.1/concat_1:0"
     scale_param {
     "InputShapes": "13x13x352, 13x13x352"
@@ -5574,10 +5574,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-47-tf.__operators__.getitem_22"
+  name: "Transform: transform-46-tf.__operators__.getitem_22"
   type: "Transform"
   bottom: "tf.__operators__.getitem_22:0"
-  top: "transform-47-tf.__operators__.getitem_22:0"
+  top: "transform-46-tf.__operators__.getitem_22:0"
     scale_param {
     "InputShapes": "13x13x352"
     "OutputShape": "13x13x352"
@@ -5591,10 +5591,10 @@ layer {
 
 }
 layer {
-  name: "Transform: transform-7-tf.__operators__.getitem_23"
+  name: "Transform: transform-6-tf.__operators__.getitem_23"
   type: "Transform"
   bottom: "tf.__operators__.getitem_23:0"
-  top: "transform-7-tf.__operators__.getitem_23:0"
+  top: "transform-6-tf.__operators__.getitem_23:0"
     scale_param {
     "InputShapes": "13x13x352"
     "OutputShape": "13x13x352"
@@ -5610,7 +5610,7 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_51"
   type: "Convolution"
-  bottom: "transform-7-tf.__operators__.getitem_23:0"
+  bottom: "transform-6-tf.__operators__.getitem_23:0"
   top: "backbone.stage4.2.branch2.2:0"
     scale_param {
     "InputShapes": "13x13x352, 1x1x352x352, 352"
@@ -5618,8 +5618,8 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_51_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_51_bias:0"
     "ConstInputs": "backbone.stage4.2.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_51_bias:0"
     "RuntimeMemory": "58.09KB"
     "ScheduleId": "608"
 
@@ -5634,12 +5634,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 352
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 352
     }
   }
 }
@@ -5654,8 +5654,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_51_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_51_bias:0"
     "ConstInputs": "backbone.stage4.2.branch2.2_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_51_bias:0"
     "RuntimeMemory": "58.09KB"
     
   }
@@ -5699,11 +5699,11 @@ layer {
     scale_param {
     "InputShapes": "13x13x352, 1x1x352x352, 352"
     "OutputShape": "13x13x352"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_53_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_53_bias:0"
     "ConstInputs": "backbone.stage4.2.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_53_bias:0"
     "RuntimeMemory": "58.09KB"
     "ScheduleId": "611"
 
@@ -5718,12 +5718,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 352
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 352
     }
   }
 }
@@ -5735,21 +5735,21 @@ layer {
     scale_param {
     "InputShapes": "13x13x352, 1"
     "OutputShape": "13x13x352"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_53_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_53_bias:0"
     "ConstInputs": "backbone.stage4.2.branch2.7_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_53_bias:0"
     "RuntimeMemory": "58.09KB"
     
   }
 
 }
 layer {
-  name: "Transform: transform-6-keras_quantization_wrapper_53"
-  type: "Transform"
+  name: "Cast: backbone.stage4.2/concat_1_qtype_pre_cast_0"
+  type: "Cast"
   bottom: "backbone.stage4.2.branch2.7:0"
-  top: "transform-6-keras_quantization_wrapper_53:0"
+  top: "backbone.stage4.2/concat_1_qtype_pre_cast_0:0"
     scale_param {
     "InputShapes": "13x13x352"
     "OutputShape": "13x13x352"
@@ -5763,10 +5763,27 @@ layer {
 
 }
 layer {
+  name: "Transform: transform-47-backbone.stage4.2/concat_1_qtype_pre_cast_0"
+  type: "Transform"
+  bottom: "backbone.stage4.2/concat_1_qtype_pre_cast_0:0"
+  top: "transform-47-backbone.stage4.2/concat_1_qtype_pre_cast_0:0"
+    scale_param {
+    "InputShapes": "13x13x352"
+    "OutputShape": "13x13x352"
+    "Quantize[mn,mx]": [-8.0, 8.0]
+    "QuantizeBits": 8
+    
+    "RuntimeMemory": "58.09KB"
+    "ScheduleId": "613"
+
+  }
+
+}
+layer {
   name: "Concat: backbone.stage4.2/concat_1"
   type: "Concat"
-  bottom: "transform-47-tf.__operators__.getitem_22:0"
-  bottom: "transform-6-keras_quantization_wrapper_53:0"
+  bottom: "transform-46-tf.__operators__.getitem_22:0"
+  bottom: "transform-47-backbone.stage4.2/concat_1_qtype_pre_cast_0:0"
   top: "backbone.stage4.2/concat_1:0"
     scale_param {
     "InputShapes": "13x13x352, 13x13x352"
@@ -5775,7 +5792,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "116.19KB"
-    "ScheduleId": "613"
+    "ScheduleId": "614"
 
   }
 
@@ -5792,7 +5809,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "614"
+    "ScheduleId": "615"
 
   }
 
@@ -5810,7 +5827,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "615"
+    "ScheduleId": "616"
 
   }
 
@@ -5827,7 +5844,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "617"
+    "ScheduleId": "618"
 
   }
 
@@ -5844,7 +5861,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "618"
+    "ScheduleId": "619"
 
   }
 
@@ -5861,7 +5878,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "619"
+    "ScheduleId": "620"
 
   }
 
@@ -5879,7 +5896,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "620"
+    "ScheduleId": "621"
 
   }
 
@@ -5896,7 +5913,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "143.00KB"
-    "ScheduleId": "622"
+    "ScheduleId": "623"
 
   }
 
@@ -5913,7 +5930,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "143.00KB"
-    "ScheduleId": "623"
+    "ScheduleId": "624"
 
   }
 
@@ -5930,7 +5947,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "624"
+    "ScheduleId": "625"
 
   }
 
@@ -5947,7 +5964,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "625"
+    "ScheduleId": "626"
 
   }
 
@@ -5960,13 +5977,13 @@ layer {
     scale_param {
     "InputShapes": "13x13x352, 1x1x352x352, 352"
     "OutputShape": "13x13x352"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_54_kernel:0"
     "ConstInputs": "backbone.stage4.3.branch2.2_slope:0"
     "ConstInputs": "keras_quantization_wrapper_54_bias:0"
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "626"
+    "ScheduleId": "627"
 
   }
   blobs {
@@ -5996,7 +6013,7 @@ layer {
     scale_param {
     "InputShapes": "13x13x352, 1"
     "OutputShape": "13x13x352"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_54_kernel:0"
     "ConstInputs": "backbone.stage4.3.branch2.2_slope:0"
@@ -6019,7 +6036,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_55_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_55_bias:0"
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "627"
+    "ScheduleId": "628"
 
   }
   blobs {
@@ -6047,10 +6064,10 @@ layer {
     "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_56_kernel:0"
-    "ConstInputs": "backbone.stage4.3.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_56_bias:0"
+    "ConstInputs": "backbone.stage4.3.branch2.7_slope:0"
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "629"
+    "ScheduleId": "630"
 
   }
   blobs {
@@ -6063,12 +6080,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 352
     }
   }
   blobs {
     shape {
-      dim: 352
+      dim: 1
     }
   }
 }
@@ -6083,8 +6100,8 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_56_kernel:0"
-    "ConstInputs": "backbone.stage4.3.branch2.7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_56_bias:0"
+    "ConstInputs": "backbone.stage4.3.branch2.7_slope:0"
     "RuntimeMemory": "58.09KB"
     
   }
@@ -6102,7 +6119,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "58.09KB"
-    "ScheduleId": "630"
+    "ScheduleId": "631"
 
   }
 
@@ -6110,8 +6127,8 @@ layer {
 layer {
   name: "Concat: backbone.stage4.3/concat_1"
   type: "Concat"
-  bottom: "transform-4-keras_quantization_wrapper_56:0"
   bottom: "transform-48-tf.__operators__.getitem_24:0"
+  bottom: "transform-4-keras_quantization_wrapper_56:0"
   top: "backbone.stage4.3/concat_1:0"
     scale_param {
     "InputShapes": "13x13x352, 13x13x352"
@@ -6120,7 +6137,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "116.19KB"
-    "ScheduleId": "631"
+    "ScheduleId": "632"
 
   }
 
@@ -6137,7 +6154,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "632"
+    "ScheduleId": "633"
 
   }
 
@@ -6155,7 +6172,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "633"
+    "ScheduleId": "634"
 
   }
 
@@ -6172,7 +6189,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "635"
+    "ScheduleId": "636"
 
   }
 
@@ -6189,7 +6206,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "636"
+    "ScheduleId": "637"
 
   }
 
@@ -6206,7 +6223,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "637"
+    "ScheduleId": "638"
 
   }
 
@@ -6224,7 +6241,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "286.00KB"
-    "ScheduleId": "638"
+    "ScheduleId": "639"
 
   }
 
@@ -6241,7 +6258,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "116.19KB"
-    "ScheduleId": "640"
+    "ScheduleId": "641"
 
   }
 
@@ -6254,13 +6271,13 @@ layer {
     scale_param {
     "InputShapes": "13x13x704, 1x1x704x128, 128"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-64.0, 64.0]
+    "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_57_kernel:0"
     "ConstInputs": "leaky_re_lu_3_slope:0"
     "ConstInputs": "keras_quantization_wrapper_57_bias:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "641"
+    "ScheduleId": "642"
 
   }
   blobs {
@@ -6290,7 +6307,7 @@ layer {
     scale_param {
     "InputShapes": "13x13x128, 1"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-4.0, 4.0]
+    "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_57_kernel:0"
     "ConstInputs": "leaky_re_lu_3_slope:0"
@@ -6311,10 +6328,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_58_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_58_bias:0"
     "ConstInputs": "leaky_re_lu_18_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_58_bias:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "642"
+    "ScheduleId": "643"
 
   }
   blobs {
@@ -6327,12 +6344,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
 }
@@ -6347,8 +6364,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_58_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_58_bias:0"
     "ConstInputs": "leaky_re_lu_18_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_58_bias:0"
     "RuntimeMemory": "6.13KB"
     
   }
@@ -6362,12 +6379,12 @@ layer {
     scale_param {
     "InputShapes": "13x13x128"
     "OutputShape": "26x26x128"
-    "Quantize[mn,mx]": [-4.0, 4.0]
+    "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "HasScratch": "true"
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "645"
+    "ScheduleId": "646"
 
   }
 
@@ -6380,13 +6397,13 @@ layer {
     scale_param {
     "InputShapes": "7x7x128, 1x1x128x128, 128"
     "OutputShape": "7x7x128"
-    "Quantize[mn,mx]": [-64.0, 64.0]
+    "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_61_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_61_bias:0"
     "ConstInputs": "leaky_re_lu_19_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_61_bias:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "644"
+    "ScheduleId": "645"
 
   }
   blobs {
@@ -6399,12 +6416,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
 }
@@ -6416,11 +6433,11 @@ layer {
     scale_param {
     "InputShapes": "7x7x128, 1"
     "OutputShape": "7x7x128"
-    "Quantize[mn,mx]": [-4.0, 4.0]
+    "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_61_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_61_bias:0"
     "ConstInputs": "leaky_re_lu_19_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_61_bias:0"
     "RuntimeMemory": "6.13KB"
     
   }
@@ -6439,7 +6456,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "647"
+    "ScheduleId": "648"
 
   }
 
@@ -6457,7 +6474,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_59_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_59_bias:0"
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "648"
+    "ScheduleId": "649"
 
   }
   blobs {
@@ -6485,10 +6502,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_60_kernel:0"
-    "ConstInputs": "leaky_re_lu_4_slope:0"
     "ConstInputs": "keras_quantization_wrapper_60_bias:0"
+    "ConstInputs": "leaky_re_lu_4_slope:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "650"
+    "ScheduleId": "651"
 
   }
   blobs {
@@ -6501,12 +6518,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 64
     }
   }
   blobs {
     shape {
-      dim: 64
+      dim: 1
     }
   }
 }
@@ -6521,8 +6538,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_60_kernel:0"
-    "ConstInputs": "leaky_re_lu_4_slope:0"
     "ConstInputs": "keras_quantization_wrapper_60_bias:0"
+    "ConstInputs": "leaky_re_lu_4_slope:0"
     "RuntimeMemory": "42.25KB"
     
   }
@@ -6542,7 +6559,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_63_bias:0"
     "ConstInputs": "leaky_re_lu_5_slope:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "651"
+    "ScheduleId": "652"
 
   }
   blobs {
@@ -6595,7 +6612,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "653"
+    "ScheduleId": "654"
 
   }
 
@@ -6613,7 +6630,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_64_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_64_bias:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "654"
+    "ScheduleId": "655"
 
   }
   blobs {
@@ -6643,7 +6660,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_65_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_65_bias:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "655"
+    "ScheduleId": "656"
 
   }
   blobs {
@@ -6673,7 +6690,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "657"
+    "ScheduleId": "658"
 
   }
 
@@ -6681,18 +6698,18 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_62"
   type: "Convolution"
-  bottom: "concatenate_1:0"
   bottom: "keras_quantization_wrapper_59:0"
+  bottom: "concatenate_1:0"
   top: "add:0"
     scale_param {
     "InputShapes": "26x26x256, 1x1x256x128, 128"
     "OutputShape": "26x26x128"
-    "Quantize[mn,mx]": [-4.0, 4.0]
+    "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_62_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_62_bias:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "658"
+    "ScheduleId": "659"
 
   }
   blobs {
@@ -6739,7 +6756,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "659"
+    "ScheduleId": "660"
 
   }
 
@@ -6757,7 +6774,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "676.00KB"
-    "ScheduleId": "661"
+    "ScheduleId": "662"
 
   }
 
@@ -6775,7 +6792,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_66_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_66_bias:0"
     "RuntimeMemory": "676.00KB"
-    "ScheduleId": "662"
+    "ScheduleId": "663"
 
   }
   blobs {
@@ -6803,10 +6820,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_67_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_67_bias:0"
     "ConstInputs": "leaky_re_lu_6_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_67_bias:0"
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "664"
+    "ScheduleId": "665"
 
   }
   blobs {
@@ -6819,12 +6836,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 64
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 64
     }
   }
 }
@@ -6839,8 +6856,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_67_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_67_bias:0"
     "ConstInputs": "leaky_re_lu_6_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_67_bias:0"
     "RuntimeMemory": "169.00KB"
     
   }
@@ -6854,13 +6871,13 @@ layer {
     scale_param {
     "InputShapes": "52x52x64, 3x3x1x64, 64"
     "OutputShape": "52x52x64"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_69_kernel:0"
     "ConstInputs": "leaky_re_lu_7_slope:0"
     "ConstInputs": "keras_quantization_wrapper_69_bias:0"
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "665"
+    "ScheduleId": "666"
 
   }
   blobs {
@@ -6890,7 +6907,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x64, 1"
     "OutputShape": "52x52x64"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_69_kernel:0"
     "ConstInputs": "leaky_re_lu_7_slope:0"
@@ -6909,11 +6926,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x64, 52x52x64"
     "OutputShape": "52x52x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "667"
+    "ScheduleId": "668"
 
   }
 
@@ -6931,7 +6948,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_70_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_70_bias:0"
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "668"
+    "ScheduleId": "669"
 
   }
   blobs {
@@ -6956,12 +6973,12 @@ layer {
     scale_param {
     "InputShapes": "52x52x64, 3x3x1x64, 64"
     "OutputShape": "52x52x64"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_71_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_71_bias:0"
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "669"
+    "ScheduleId": "670"
 
   }
   blobs {
@@ -6987,11 +7004,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x64, 52x52x64"
     "OutputShape": "52x52x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "671"
+    "ScheduleId": "672"
 
   }
 
@@ -7010,7 +7027,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_68_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_68_bias:0"
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "672"
+    "ScheduleId": "673"
 
   }
   blobs {
@@ -7035,7 +7052,7 @@ layer {
     scale_param {
     "InputShapes": "52x52x128, 52x52x128"
     "OutputShape": "52x52x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_68_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_68_bias:0"
@@ -7058,7 +7075,7 @@ layer {
     "ConstInputs": "leaky_re_lu_8_slope:0"
     "ConstInputs": "keras_quantization_wrapper_73_bias:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "675"
+    "ScheduleId": "676"
 
   }
   blobs {
@@ -7112,7 +7129,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_72_bias:0"
     "ConstInputs": "leaky_re_lu_20_slope:0"
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "673"
+    "ScheduleId": "674"
 
   }
   blobs {
@@ -7166,7 +7183,7 @@ layer {
     "ConstInputs": "leaky_re_lu_9_slope:0"
     "ConstInputs": "keras_quantization_wrapper_75_bias:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "678"
+    "ScheduleId": "679"
 
   }
   blobs {
@@ -7217,10 +7234,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_74_kernel:0"
-    "ConstInputs": "leaky_re_lu_21_slope:0"
     "ConstInputs": "keras_quantization_wrapper_74_bias:0"
+    "ConstInputs": "leaky_re_lu_21_slope:0"
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "677"
+    "ScheduleId": "678"
 
   }
   blobs {
@@ -7233,12 +7250,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -7253,8 +7270,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_74_kernel:0"
-    "ConstInputs": "leaky_re_lu_21_slope:0"
     "ConstInputs": "keras_quantization_wrapper_74_bias:0"
+    "ConstInputs": "leaky_re_lu_21_slope:0"
     "RuntimeMemory": "338.00KB"
     
   }
@@ -7263,8 +7280,8 @@ layer {
 layer {
   name: "Concat: n3_input"
   type: "Concat"
-  bottom: "leaky_re_lu_9:0"
   bottom: "add:0"
+  bottom: "leaky_re_lu_9:0"
   top: "n3_input:0"
     scale_param {
     "InputShapes": "26x26x128, 26x26x128"
@@ -7273,7 +7290,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "683"
+    "ScheduleId": "684"
 
   }
 
@@ -7286,13 +7303,13 @@ layer {
     scale_param {
     "InputShapes": "52x52x128, 5x5x1x128, 128"
     "OutputShape": "52x52x128"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_76_kernel:0"
-    "ConstInputs": "leaky_re_lu_22_slope:0"
     "ConstInputs": "keras_quantization_wrapper_76_bias:0"
+    "ConstInputs": "leaky_re_lu_22_slope:0"
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "679"
+    "ScheduleId": "680"
 
   }
   blobs {
@@ -7305,12 +7322,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -7322,11 +7339,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x128, 1"
     "OutputShape": "52x52x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_76_kernel:0"
-    "ConstInputs": "leaky_re_lu_22_slope:0"
     "ConstInputs": "keras_quantization_wrapper_76_bias:0"
+    "ConstInputs": "leaky_re_lu_22_slope:0"
     "RuntimeMemory": "338.00KB"
     
   }
@@ -7340,12 +7357,12 @@ layer {
     scale_param {
     "InputShapes": "26x26x256, 5x5x1x256, 256"
     "OutputShape": "26x26x256"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_77_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_77_bias:0"
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "684"
+    "ScheduleId": "685"
 
   }
   blobs {
@@ -7373,10 +7390,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_78_kernel:0"
-    "ConstInputs": "leaky_re_lu_10_slope:0"
     "ConstInputs": "keras_quantization_wrapper_78_bias:0"
+    "ConstInputs": "leaky_re_lu_10_slope:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "686"
+    "ScheduleId": "687"
 
   }
   blobs {
@@ -7389,12 +7406,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 64
     }
   }
   blobs {
     shape {
-      dim: 64
+      dim: 1
     }
   }
 }
@@ -7409,8 +7426,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_78_kernel:0"
-    "ConstInputs": "leaky_re_lu_10_slope:0"
     "ConstInputs": "keras_quantization_wrapper_78_bias:0"
+    "ConstInputs": "leaky_re_lu_10_slope:0"
     "RuntimeMemory": "42.25KB"
     
   }
@@ -7430,7 +7447,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_79_bias:0"
     "ConstInputs": "leaky_re_lu_23_slope:0"
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "681"
+    "ScheduleId": "682"
 
   }
   blobs {
@@ -7478,13 +7495,13 @@ layer {
     scale_param {
     "InputShapes": "26x26x64, 3x3x1x64, 64"
     "OutputShape": "26x26x64"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_81_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_81_bias:0"
     "ConstInputs": "leaky_re_lu_11_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_81_bias:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "687"
+    "ScheduleId": "688"
 
   }
   blobs {
@@ -7497,12 +7514,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 64
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 64
     }
   }
 }
@@ -7514,11 +7531,11 @@ layer {
     scale_param {
     "InputShapes": "26x26x64, 1"
     "OutputShape": "26x26x64"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_81_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_81_bias:0"
     "ConstInputs": "leaky_re_lu_11_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_81_bias:0"
     "RuntimeMemory": "42.25KB"
     
   }
@@ -7532,12 +7549,12 @@ layer {
     scale_param {
     "InputShapes": "52x52x128, 1x1x128x35, 35"
     "OutputShape": "52x52x35"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_82_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_82_bias:0"
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "682"
+    "ScheduleId": "683"
 
   }
   blobs {
@@ -7557,17 +7574,17 @@ layer {
 layer {
   name: "Concat: concatenate_4"
   type: "Concat"
-  bottom: "leaky_re_lu_10:0"
   bottom: "leaky_re_lu_11:0"
+  bottom: "leaky_re_lu_10:0"
   top: "concatenate_4:0"
     scale_param {
     "InputShapes": "26x26x64, 26x26x64"
     "OutputShape": "26x26x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "689"
+    "ScheduleId": "690"
 
   }
 
@@ -7580,11 +7597,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x35"
     "OutputShape": "52x52x35"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "113.75KB"
-    "ScheduleId": "765"
+    "ScheduleId": "766"
 
   }
 
@@ -7597,11 +7614,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x35"
     "OutputShape": "52x52x35"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "113.75KB"
-    "ScheduleId": "770"
+    "ScheduleId": "771"
 
   }
 
@@ -7619,7 +7636,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_83_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_83_bias:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "690"
+    "ScheduleId": "691"
 
   }
   blobs {
@@ -7644,11 +7661,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x35"
     "OutputShape": "52x52x3"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "9.75KB"
-    "ScheduleId": "766"
+    "ScheduleId": "767"
 
   }
 
@@ -7661,11 +7678,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x35"
     "OutputShape": "52x52x32"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "104.00KB"
-    "ScheduleId": "771"
+    "ScheduleId": "772"
 
   }
 
@@ -7683,7 +7700,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_84_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_84_bias:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "691"
+    "ScheduleId": "692"
 
   }
   blobs {
@@ -7708,11 +7725,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x3"
     "OutputShape": "52x52x3"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "767"
+    "ScheduleId": "768"
 
   }
 
@@ -7725,11 +7742,11 @@ layer {
     scale_param {
     "InputShapes": "52x52x32"
     "OutputShape": "52x52x32"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "772"
+    "ScheduleId": "773"
 
   }
 
@@ -7737,8 +7754,8 @@ layer {
 layer {
   name: "Concat: concatenate_5"
   type: "Concat"
-  bottom: "keras_quantization_wrapper_84:0"
   bottom: "keras_quantization_wrapper_83:0"
+  bottom: "keras_quantization_wrapper_84:0"
   top: "concatenate_5:0"
     scale_param {
     "InputShapes": "26x26x64, 26x26x64"
@@ -7747,7 +7764,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "693"
+    "ScheduleId": "694"
 
   }
 
@@ -7760,12 +7777,12 @@ layer {
     scale_param {
     "InputShapes": "52x52x3"
     "OutputShape": "2704x3"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "HasScratch": "true"
     
     "RuntimeMemory": "85.00KB"
-    "ScheduleId": "768"
+    "ScheduleId": "769"
 
   }
 
@@ -7778,12 +7795,12 @@ layer {
     scale_param {
     "InputShapes": "52x52x32"
     "OutputShape": "2704x4x8"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "HasScratch": "true"
     
     "RuntimeMemory": "338.00KB"
-    "ScheduleId": "773"
+    "ScheduleId": "774"
 
   }
 
@@ -7802,7 +7819,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_80_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_80_bias:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "694"
+    "ScheduleId": "695"
 
   }
   blobs {
@@ -7827,7 +7844,7 @@ layer {
     scale_param {
     "InputShapes": "26x26x128, 26x26x128"
     "OutputShape": "26x26x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_80_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_80_bias:0"
@@ -7844,11 +7861,11 @@ layer {
     scale_param {
     "InputShapes": "2704x3"
     "OutputShape": "2704x3"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "7.97KB"
-    "ScheduleId": "775"
+    "ScheduleId": "776"
 
   }
 
@@ -7861,11 +7878,11 @@ layer {
     scale_param {
     "InputShapes": "2704x4x8"
     "OutputShape": "2704x4x8"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "85.00KB"
-    "ScheduleId": "781"
+    "ScheduleId": "782"
 
   }
 
@@ -7884,7 +7901,7 @@ layer {
     "ConstInputs": "leaky_re_lu_12_slope:0"
     "ConstInputs": "keras_quantization_wrapper_87_bias:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "697"
+    "ScheduleId": "698"
 
   }
   blobs {
@@ -7935,10 +7952,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_86_kernel:0"
-    "ConstInputs": "leaky_re_lu_24_slope:0"
     "ConstInputs": "keras_quantization_wrapper_86_bias:0"
+    "ConstInputs": "leaky_re_lu_24_slope:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "695"
+    "ScheduleId": "696"
 
   }
   blobs {
@@ -7951,12 +7968,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -7971,8 +7988,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_86_kernel:0"
-    "ConstInputs": "leaky_re_lu_24_slope:0"
     "ConstInputs": "keras_quantization_wrapper_86_bias:0"
+    "ConstInputs": "leaky_re_lu_24_slope:0"
     "RuntimeMemory": "84.50KB"
     
   }
@@ -7990,7 +8007,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "85.00KB"
-    "ScheduleId": "782"
+    "ScheduleId": "783"
 
   }
 
@@ -8006,10 +8023,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_89_kernel:0"
-    "ConstInputs": "leaky_re_lu_13_slope:0"
     "ConstInputs": "keras_quantization_wrapper_89_bias:0"
+    "ConstInputs": "leaky_re_lu_13_slope:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "700"
+    "ScheduleId": "701"
 
   }
   blobs {
@@ -8022,12 +8039,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -8042,8 +8059,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_89_kernel:0"
-    "ConstInputs": "leaky_re_lu_13_slope:0"
     "ConstInputs": "keras_quantization_wrapper_89_bias:0"
+    "ConstInputs": "leaky_re_lu_13_slope:0"
     "RuntimeMemory": "21.13KB"
     
   }
@@ -8060,10 +8077,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_88_kernel:0"
-    "ConstInputs": "leaky_re_lu_25_slope:0"
     "ConstInputs": "keras_quantization_wrapper_88_bias:0"
+    "ConstInputs": "leaky_re_lu_25_slope:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "699"
+    "ScheduleId": "700"
 
   }
   blobs {
@@ -8076,12 +8093,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -8096,8 +8113,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_88_kernel:0"
-    "ConstInputs": "leaky_re_lu_25_slope:0"
     "ConstInputs": "keras_quantization_wrapper_88_bias:0"
+    "ConstInputs": "leaky_re_lu_25_slope:0"
     "RuntimeMemory": "84.50KB"
     
   }
@@ -8115,7 +8132,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "676.00KB"
-    "ScheduleId": "783"
+    "ScheduleId": "784"
 
   }
 
@@ -8133,7 +8150,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "705"
+    "ScheduleId": "706"
 
   }
 
@@ -8146,13 +8163,13 @@ layer {
     scale_param {
     "InputShapes": "26x26x128, 5x5x1x128, 128"
     "OutputShape": "26x26x128"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_90_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_90_bias:0"
     "ConstInputs": "leaky_re_lu_26_slope:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "701"
+    "ScheduleId": "702"
 
   }
   blobs {
@@ -8182,7 +8199,7 @@ layer {
     scale_param {
     "InputShapes": "26x26x128, 1"
     "OutputShape": "26x26x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_90_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_90_bias:0"
@@ -8205,7 +8222,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_85_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_85_bias:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "784"
+    "ScheduleId": "785"
 
   }
   blobs {
@@ -8235,7 +8252,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_91_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_91_bias:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "706"
+    "ScheduleId": "707"
 
   }
   blobs {
@@ -8266,7 +8283,7 @@ layer {
     "ConstInputs": "leaky_re_lu_14_slope:0"
     "ConstInputs": "keras_quantization_wrapper_92_bias:0"
     "RuntimeMemory": "10.56KB"
-    "ScheduleId": "708"
+    "ScheduleId": "709"
 
   }
   blobs {
@@ -8317,10 +8334,10 @@ layer {
     "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_93_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_93_bias:0"
     "ConstInputs": "leaky_re_lu_27_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_93_bias:0"
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "703"
+    "ScheduleId": "704"
 
   }
   blobs {
@@ -8333,12 +8350,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
 }
@@ -8353,8 +8370,8 @@ layer {
     "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_93_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_93_bias:0"
     "ConstInputs": "leaky_re_lu_27_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_93_bias:0"
     "RuntimeMemory": "84.50KB"
     
   }
@@ -8372,7 +8389,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "84.50KB"
-    "ScheduleId": "786"
+    "ScheduleId": "787"
 
   }
 
@@ -8388,10 +8405,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_95_kernel:0"
-    "ConstInputs": "leaky_re_lu_15_slope:0"
     "ConstInputs": "keras_quantization_wrapper_95_bias:0"
+    "ConstInputs": "leaky_re_lu_15_slope:0"
     "RuntimeMemory": "10.56KB"
-    "ScheduleId": "709"
+    "ScheduleId": "710"
 
   }
   blobs {
@@ -8404,12 +8421,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 64
     }
   }
   blobs {
     shape {
-      dim: 64
+      dim: 1
     }
   }
 }
@@ -8424,8 +8441,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_95_kernel:0"
-    "ConstInputs": "leaky_re_lu_15_slope:0"
     "ConstInputs": "keras_quantization_wrapper_95_bias:0"
+    "ConstInputs": "leaky_re_lu_15_slope:0"
     "RuntimeMemory": "10.56KB"
     
   }
@@ -8444,7 +8461,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_96_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_96_bias:0"
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "704"
+    "ScheduleId": "705"
 
   }
   blobs {
@@ -8473,7 +8490,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "10.63KB"
-    "ScheduleId": "806"
+    "ScheduleId": "807"
 
   }
 
@@ -8481,8 +8498,8 @@ layer {
 layer {
   name: "Concat: concatenate_6"
   type: "Concat"
-  bottom: "leaky_re_lu_14:0"
   bottom: "leaky_re_lu_15:0"
+  bottom: "leaky_re_lu_14:0"
   top: "concatenate_6:0"
     scale_param {
     "InputShapes": "13x13x64, 13x13x64"
@@ -8491,7 +8508,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "711"
+    "ScheduleId": "712"
 
   }
 
@@ -8508,7 +8525,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "28.44KB"
-    "ScheduleId": "735"
+    "ScheduleId": "736"
 
   }
 
@@ -8525,7 +8542,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "28.44KB"
-    "ScheduleId": "740"
+    "ScheduleId": "741"
 
   }
 
@@ -8538,11 +8555,11 @@ layer {
     scale_param {
     "InputShapes": "2704x4, 2704x1"
     "OutputShape": "2704x4"
-    "Quantize[mn,mx]": [0, 0.125]
+    "Quantize[mn,mx]": [0, 0.25]
     "QuantizeBits": 8
     "ConstInputs": "tf.math.multiply_y:0"
     "RuntimeMemory": "10.63KB"
-    "ScheduleId": "807"
+    "ScheduleId": "808"
 
   }
   blobs {
@@ -8565,7 +8582,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_97_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_97_bias:0"
     "RuntimeMemory": "10.56KB"
-    "ScheduleId": "712"
+    "ScheduleId": "713"
 
   }
   blobs {
@@ -8594,7 +8611,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "2.44KB"
-    "ScheduleId": "736"
+    "ScheduleId": "737"
 
   }
 
@@ -8611,7 +8628,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "26.00KB"
-    "ScheduleId": "741"
+    "ScheduleId": "742"
 
   }
 
@@ -8627,11 +8644,11 @@ layer {
     scale_param {
     "InputShapes": "2704x4"
     "OutputShape": "2704"
-    "Quantize[mn,mx]": [0, 0.125]
+    "Quantize[mn,mx]": [0, 0.25]
     "QuantizeBits": 8
     
     "RuntimeMemory": "10.63KB"
-    "ScheduleId": "808"
+    "ScheduleId": "809"
 
   }
 
@@ -8649,7 +8666,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_98_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_98_bias:0"
     "RuntimeMemory": "10.56KB"
-    "ScheduleId": "713"
+    "ScheduleId": "714"
 
   }
   blobs {
@@ -8678,7 +8695,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "737"
+    "ScheduleId": "738"
 
   }
 
@@ -8695,7 +8712,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "742"
+    "ScheduleId": "743"
 
   }
 
@@ -8712,7 +8729,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_x:0"
     "RuntimeMemory": "2.66KB"
-    "ScheduleId": "811"
+    "ScheduleId": "812"
 
   }
   blobs {
@@ -8749,7 +8766,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_1_x:0"
     "RuntimeMemory": "2.66KB"
-    "ScheduleId": "812"
+    "ScheduleId": "813"
 
   }
   blobs {
@@ -8786,7 +8803,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_x:0"
     "RuntimeMemory": "2.66KB"
-    "ScheduleId": "809"
+    "ScheduleId": "810"
 
   }
   blobs {
@@ -8823,7 +8840,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_1_x:0"
     "RuntimeMemory": "2.66KB"
-    "ScheduleId": "810"
+    "ScheduleId": "811"
 
   }
   blobs {
@@ -8861,7 +8878,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "715"
+    "ScheduleId": "716"
 
   }
 
@@ -8879,7 +8896,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "22.00KB"
-    "ScheduleId": "738"
+    "ScheduleId": "739"
 
   }
 
@@ -8897,7 +8914,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "85.00KB"
-    "ScheduleId": "743"
+    "ScheduleId": "744"
 
   }
 
@@ -8905,19 +8922,19 @@ layer {
 layer {
   name: "Stack: tf.stack"
   type: "Stack"
-  bottom: "re_lu_2:0"
+  bottom: "re_lu:0"
   bottom: "re_lu_3:0"
   bottom: "re_lu_1:0"
-  bottom: "re_lu:0"
+  bottom: "re_lu_2:0"
   top: "tf.stack:0"
     scale_param {
     "InputShapes": "2704, 2704, 2704, 2704"
     "OutputShape": "2704x4"
-    "Quantize[mn,mx]": [0, 2.0]
+    "Quantize[mn,mx]": [0, 1.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "10.63KB"
-    "ScheduleId": "813"
+    "ScheduleId": "814"
 
   }
 
@@ -8925,18 +8942,18 @@ layer {
 layer {
   name: "Conv2D: keras_quantization_wrapper_94"
   type: "Convolution"
-  bottom: "concatenate_7:0"
   bottom: "keras_quantization_wrapper_91:0"
+  bottom: "concatenate_7:0"
   top: "add_3:0"
     scale_param {
     "InputShapes": "13x13x256, 1x1x256x128, 128"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-4.0, 4.0]
+    "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_94_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_94_bias:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "716"
+    "ScheduleId": "717"
 
   }
   blobs {
@@ -8961,7 +8978,7 @@ layer {
     scale_param {
     "InputShapes": "13x13x128, 13x13x128"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_94_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_94_bias:0"
@@ -8982,7 +8999,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "2.06KB"
-    "ScheduleId": "776"
+    "ScheduleId": "777"
 
   }
 
@@ -8999,7 +9016,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "22.00KB"
-    "ScheduleId": "787"
+    "ScheduleId": "788"
 
   }
 
@@ -9012,12 +9029,12 @@ layer {
     scale_param {
     "InputShapes": "2704x4"
     "OutputShape": "2704x1x4"
-    "Quantize[mn,mx]": [0, 2.0]
+    "Quantize[mn,mx]": [0, 1.0]
     "QuantizeBits": 8
     "HasScratch": "true"
     
     "RuntimeMemory": "10.63KB"
-    "ScheduleId": "814"
+    "ScheduleId": "815"
 
   }
 
@@ -9036,7 +9053,7 @@ layer {
     "ConstInputs": "leaky_re_lu_16_slope:0"
     "ConstInputs": "keras_quantization_wrapper_101_bias:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "719"
+    "ScheduleId": "720"
 
   }
   blobs {
@@ -9090,7 +9107,7 @@ layer {
     "ConstInputs": "leaky_re_lu_28_slope:0"
     "ConstInputs": "keras_quantization_wrapper_100_bias:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "717"
+    "ScheduleId": "718"
 
   }
   blobs {
@@ -9142,7 +9159,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "22.00KB"
-    "ScheduleId": "788"
+    "ScheduleId": "789"
 
   }
 
@@ -9155,13 +9172,13 @@ layer {
     scale_param {
     "InputShapes": "7x7x128, 1x1x128x128, 128"
     "OutputShape": "7x7x128"
-    "Quantize[mn,mx]": [-64.0, 64.0]
+    "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_103_kernel:0"
-    "ConstInputs": "leaky_re_lu_17_slope:0"
     "ConstInputs": "keras_quantization_wrapper_103_bias:0"
+    "ConstInputs": "leaky_re_lu_17_slope:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "722"
+    "ScheduleId": "723"
 
   }
   blobs {
@@ -9174,12 +9191,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -9191,11 +9208,11 @@ layer {
     scale_param {
     "InputShapes": "7x7x128, 1"
     "OutputShape": "7x7x128"
-    "Quantize[mn,mx]": [-4.0, 4.0]
+    "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_103_kernel:0"
-    "ConstInputs": "leaky_re_lu_17_slope:0"
     "ConstInputs": "keras_quantization_wrapper_103_bias:0"
+    "ConstInputs": "leaky_re_lu_17_slope:0"
     "RuntimeMemory": "6.13KB"
     
   }
@@ -9215,7 +9232,7 @@ layer {
     "ConstInputs": "leaky_re_lu_29_slope:0"
     "ConstInputs": "keras_quantization_wrapper_102_bias:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "721"
+    "ScheduleId": "722"
 
   }
   blobs {
@@ -9267,7 +9284,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "169.00KB"
-    "ScheduleId": "789"
+    "ScheduleId": "790"
 
   }
 
@@ -9275,8 +9292,8 @@ layer {
 layer {
   name: "Add: add_4"
   type: "Add"
-  bottom: "leaky_re_lu_17:0"
   bottom: "leaky_re_lu_19:0"
+  bottom: "leaky_re_lu_17:0"
   top: "add_4:0"
     scale_param {
     "InputShapes": "7x7x128, 7x7x128"
@@ -9285,7 +9302,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "723"
+    "ScheduleId": "724"
 
   }
 
@@ -9298,13 +9315,13 @@ layer {
     scale_param {
     "InputShapes": "13x13x128, 5x5x1x128, 128"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_104_kernel:0"
-    "ConstInputs": "leaky_re_lu_30_slope:0"
     "ConstInputs": "keras_quantization_wrapper_104_bias:0"
+    "ConstInputs": "leaky_re_lu_30_slope:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "724"
+    "ScheduleId": "725"
 
   }
   blobs {
@@ -9317,12 +9334,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -9334,11 +9351,11 @@ layer {
     scale_param {
     "InputShapes": "13x13x128, 1"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_104_kernel:0"
-    "ConstInputs": "leaky_re_lu_30_slope:0"
     "ConstInputs": "keras_quantization_wrapper_104_bias:0"
+    "ConstInputs": "leaky_re_lu_30_slope:0"
     "RuntimeMemory": "21.13KB"
     
   }
@@ -9357,7 +9374,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_99_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_99_bias:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "790"
+    "ScheduleId": "791"
 
   }
   blobs {
@@ -9385,10 +9402,10 @@ layer {
     "Quantize[mn,mx]": [-128.0, 128.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_105_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_105_bias:0"
     "ConstInputs": "leaky_re_lu_32_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_105_bias:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "726"
+    "ScheduleId": "727"
 
   }
   blobs {
@@ -9401,12 +9418,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
 }
@@ -9421,8 +9438,8 @@ layer {
     "Quantize[mn,mx]": [-8.0, 8.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_105_kernel:0"
-    "ConstInputs": "keras_quantization_wrapper_105_bias:0"
     "ConstInputs": "leaky_re_lu_32_slope:0"
+    "ConstInputs": "keras_quantization_wrapper_105_bias:0"
     "RuntimeMemory": "6.13KB"
     
   }
@@ -9436,13 +9453,13 @@ layer {
     scale_param {
     "InputShapes": "13x13x128, 1x1x128x128, 128"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-128.0, 128.0]
+    "Quantize[mn,mx]": [-256.0, 256.0]
     "QuantizeBits": 16
     "ConstInputs": "keras_quantization_wrapper_106_kernel:0"
-    "ConstInputs": "leaky_re_lu_31_slope:0"
     "ConstInputs": "keras_quantization_wrapper_106_bias:0"
+    "ConstInputs": "leaky_re_lu_31_slope:0"
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "728"
+    "ScheduleId": "729"
 
   }
   blobs {
@@ -9455,12 +9472,12 @@ layer {
   }
   blobs {
     shape {
-      dim: 1
+      dim: 128
     }
   }
   blobs {
     shape {
-      dim: 128
+      dim: 1
     }
   }
 }
@@ -9472,11 +9489,11 @@ layer {
     scale_param {
     "InputShapes": "13x13x128, 1"
     "OutputShape": "13x13x128"
-    "Quantize[mn,mx]": [-8.0, 8.0]
+    "Quantize[mn,mx]": [-16.0, 16.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_106_kernel:0"
-    "ConstInputs": "leaky_re_lu_31_slope:0"
     "ConstInputs": "keras_quantization_wrapper_106_bias:0"
+    "ConstInputs": "leaky_re_lu_31_slope:0"
     "RuntimeMemory": "21.13KB"
     
   }
@@ -9494,7 +9511,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "21.13KB"
-    "ScheduleId": "792"
+    "ScheduleId": "793"
 
   }
 
@@ -9513,7 +9530,7 @@ layer {
     "ConstInputs": "leaky_re_lu_33_slope:0"
     "ConstInputs": "keras_quantization_wrapper_107_bias:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "729"
+    "ScheduleId": "730"
 
   }
   blobs {
@@ -9566,7 +9583,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_108_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_108_bias:0"
     "RuntimeMemory": "10.56KB"
-    "ScheduleId": "730"
+    "ScheduleId": "731"
 
   }
   blobs {
@@ -9595,7 +9612,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "2.75KB"
-    "ScheduleId": "816"
+    "ScheduleId": "817"
 
   }
 
@@ -9614,7 +9631,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_109_bias:0"
     "ConstInputs": "leaky_re_lu_34_slope:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "731"
+    "ScheduleId": "732"
 
   }
   blobs {
@@ -9666,7 +9683,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "14.22KB"
-    "ScheduleId": "745"
+    "ScheduleId": "746"
 
   }
 
@@ -9683,7 +9700,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "14.22KB"
-    "ScheduleId": "750"
+    "ScheduleId": "751"
 
   }
 
@@ -9700,7 +9717,7 @@ layer {
     "QuantizeBits": 8
     "ConstInputs": "tf.math.multiply_1_y:0"
     "RuntimeMemory": "2.75KB"
-    "ScheduleId": "817"
+    "ScheduleId": "818"
 
   }
   blobs {
@@ -9724,7 +9741,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_110_bias:0"
     "ConstInputs": "leaky_re_lu_35_slope:0"
     "RuntimeMemory": "6.13KB"
-    "ScheduleId": "733"
+    "ScheduleId": "734"
 
   }
   blobs {
@@ -9776,7 +9793,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "1.22KB"
-    "ScheduleId": "746"
+    "ScheduleId": "747"
 
   }
 
@@ -9793,7 +9810,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "13.00KB"
-    "ScheduleId": "751"
+    "ScheduleId": "752"
 
   }
 
@@ -9813,7 +9830,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "2.75KB"
-    "ScheduleId": "818"
+    "ScheduleId": "819"
 
   }
 
@@ -9831,7 +9848,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_112_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_112_bias:0"
     "RuntimeMemory": "3.06KB"
-    "ScheduleId": "734"
+    "ScheduleId": "735"
 
   }
   blobs {
@@ -9860,7 +9877,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "5.28KB"
-    "ScheduleId": "747"
+    "ScheduleId": "748"
 
   }
 
@@ -9877,7 +9894,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "5.28KB"
-    "ScheduleId": "752"
+    "ScheduleId": "753"
 
   }
 
@@ -9894,7 +9911,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_2_x:0"
     "RuntimeMemory": "704B"
-    "ScheduleId": "821"
+    "ScheduleId": "822"
 
   }
   blobs {
@@ -9931,7 +9948,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_3_x:0"
     "RuntimeMemory": "704B"
-    "ScheduleId": "822"
+    "ScheduleId": "823"
 
   }
   blobs {
@@ -9968,7 +9985,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_2_x:0"
     "RuntimeMemory": "704B"
-    "ScheduleId": "819"
+    "ScheduleId": "820"
 
   }
   blobs {
@@ -10005,7 +10022,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_3_x:0"
     "RuntimeMemory": "704B"
-    "ScheduleId": "820"
+    "ScheduleId": "821"
 
   }
   blobs {
@@ -10042,7 +10059,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "7.66KB"
-    "ScheduleId": "755"
+    "ScheduleId": "756"
 
   }
 
@@ -10059,7 +10076,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "7.66KB"
-    "ScheduleId": "760"
+    "ScheduleId": "761"
 
   }
 
@@ -10077,7 +10094,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "6.00KB"
-    "ScheduleId": "748"
+    "ScheduleId": "749"
 
   }
 
@@ -10095,7 +10112,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "22.00KB"
-    "ScheduleId": "753"
+    "ScheduleId": "754"
 
   }
 
@@ -10103,10 +10120,10 @@ layer {
 layer {
   name: "Stack: tf.stack_1"
   type: "Stack"
+  bottom: "re_lu_7:0"
   bottom: "re_lu_6:0"
   bottom: "re_lu_4:0"
   bottom: "re_lu_5:0"
-  bottom: "re_lu_7:0"
   top: "tf.stack_1:0"
     scale_param {
     "InputShapes": "676, 676, 676, 676"
@@ -10115,7 +10132,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "2.75KB"
-    "ScheduleId": "823"
+    "ScheduleId": "824"
 
   }
 
@@ -10132,7 +10149,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "672B"
-    "ScheduleId": "756"
+    "ScheduleId": "757"
 
   }
 
@@ -10149,7 +10166,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "7.00KB"
-    "ScheduleId": "761"
+    "ScheduleId": "762"
 
   }
 
@@ -10166,7 +10183,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "576B"
-    "ScheduleId": "777"
+    "ScheduleId": "778"
 
   }
 
@@ -10183,7 +10200,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "6.00KB"
-    "ScheduleId": "793"
+    "ScheduleId": "794"
 
   }
 
@@ -10201,7 +10218,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "2.75KB"
-    "ScheduleId": "824"
+    "ScheduleId": "825"
 
   }
 
@@ -10218,7 +10235,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "1.53KB"
-    "ScheduleId": "757"
+    "ScheduleId": "758"
 
   }
 
@@ -10235,7 +10252,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "1.53KB"
-    "ScheduleId": "762"
+    "ScheduleId": "763"
 
   }
 
@@ -10252,7 +10269,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "6.00KB"
-    "ScheduleId": "794"
+    "ScheduleId": "795"
 
   }
 
@@ -10270,7 +10287,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "2.00KB"
-    "ScheduleId": "758"
+    "ScheduleId": "759"
 
   }
 
@@ -10288,7 +10305,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "7.00KB"
-    "ScheduleId": "763"
+    "ScheduleId": "764"
 
   }
 
@@ -10305,7 +10322,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "42.25KB"
-    "ScheduleId": "795"
+    "ScheduleId": "796"
 
   }
 
@@ -10322,7 +10339,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "192B"
-    "ScheduleId": "778"
+    "ScheduleId": "779"
 
   }
 
@@ -10339,7 +10356,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "2.00KB"
-    "ScheduleId": "799"
+    "ScheduleId": "800"
 
   }
 
@@ -10357,7 +10374,7 @@ layer {
     "ConstInputs": "keras_quantization_wrapper_111_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_111_bias:0"
     "RuntimeMemory": "5.28KB"
-    "ScheduleId": "796"
+    "ScheduleId": "797"
 
   }
   blobs {
@@ -10377,9 +10394,9 @@ layer {
 layer {
   name: "Concat: bb_dec_class"
   type: "Concat"
+  bottom: "transform-52-tf.reshape_43:0"
   bottom: "transform-49-tf.reshape_34:0"
   bottom: "transform-51-tf.reshape_40:0"
-  bottom: "transform-52-tf.reshape_43:0"
   bottom: "transform-50-tf.reshape_37:0"
   top: "bb_dec_class:0"
     scale_param {
@@ -10389,7 +10406,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "10.59KB"
-    "ScheduleId": "779"
+    "ScheduleId": "780"
 
   }
 
@@ -10406,7 +10423,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "2.00KB"
-    "ScheduleId": "800"
+    "ScheduleId": "801"
 
   }
 
@@ -10423,7 +10440,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "5.28KB"
-    "ScheduleId": "798"
+    "ScheduleId": "799"
 
   }
 
@@ -10440,7 +10457,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "10.59KB"
-    "ScheduleId": "780"
+    "ScheduleId": "781"
 
   }
 
@@ -10457,7 +10474,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "12.25KB"
-    "ScheduleId": "801"
+    "ScheduleId": "802"
 
   }
 
@@ -10474,7 +10491,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "768B"
-    "ScheduleId": "826"
+    "ScheduleId": "827"
 
   }
 
@@ -10491,7 +10508,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "10.59KB"
-    "ScheduleId": "805"
+    "ScheduleId": "806"
 
   }
 
@@ -10504,12 +10521,12 @@ layer {
     scale_param {
     "InputShapes": "49x4x8, 1x1x8x1, 1"
     "OutputShape": "49x4x1"
-    "Quantize[mn,mx]": [0, 8.0]
+    "Quantize[mn,mx]": [0, 4.0]
     "QuantizeBits": 8
     "ConstInputs": "keras_quantization_wrapper_113_kernel:0"
     "ConstInputs": "keras_quantization_wrapper_113_bias:0"
     "RuntimeMemory": "1.53KB"
-    "ScheduleId": "802"
+    "ScheduleId": "803"
 
   }
   blobs {
@@ -10534,11 +10551,11 @@ layer {
     scale_param {
     "InputShapes": "169x4, 169x1"
     "OutputShape": "169x4"
-    "Quantize[mn,mx]": [0, 0.5]
+    "Quantize[mn,mx]": [0, 1.0]
     "QuantizeBits": 8
     "ConstInputs": "tf.math.multiply_2_y:0"
     "RuntimeMemory": "768B"
-    "ScheduleId": "827"
+    "ScheduleId": "828"
 
   }
   blobs {
@@ -10556,11 +10573,11 @@ layer {
     scale_param {
     "InputShapes": "49x4x1"
     "OutputShape": "49x4"
-    "Quantize[mn,mx]": [0, 8.0]
+    "Quantize[mn,mx]": [0, 4.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "1.53KB"
-    "ScheduleId": "804"
+    "ScheduleId": "805"
 
   }
 
@@ -10576,11 +10593,11 @@ layer {
     scale_param {
     "InputShapes": "169x4"
     "OutputShape": "169"
-    "Quantize[mn,mx]": [0, 0.5]
+    "Quantize[mn,mx]": [0, 1.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "768B"
-    "ScheduleId": "828"
+    "ScheduleId": "829"
 
   }
 
@@ -10593,11 +10610,11 @@ layer {
     scale_param {
     "InputShapes": "49x4"
     "OutputShape": "49x4"
-    "Quantize[mn,mx]": [0, 8.0]
+    "Quantize[mn,mx]": [0, 4.0]
     "QuantizeBits": 8
     
     "RuntimeMemory": "256B"
-    "ScheduleId": "836"
+    "ScheduleId": "837"
 
   }
 
@@ -10614,7 +10631,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_4_x:0"
     "RuntimeMemory": "192B"
-    "ScheduleId": "829"
+    "ScheduleId": "830"
 
   }
   blobs {
@@ -10651,7 +10668,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_5_x:0"
     "RuntimeMemory": "192B"
-    "ScheduleId": "830"
+    "ScheduleId": "831"
 
   }
   blobs {
@@ -10688,7 +10705,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_4_x:0"
     "RuntimeMemory": "192B"
-    "ScheduleId": "831"
+    "ScheduleId": "832"
 
   }
   blobs {
@@ -10725,7 +10742,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_5_x:0"
     "RuntimeMemory": "192B"
-    "ScheduleId": "832"
+    "ScheduleId": "833"
 
   }
   blobs {
@@ -10762,7 +10779,7 @@ layer {
     "QuantizeBits": 8
     "ConstInputs": "tf.math.multiply_3_y:0"
     "RuntimeMemory": "256B"
-    "ScheduleId": "837"
+    "ScheduleId": "838"
 
   }
   blobs {
@@ -10775,10 +10792,10 @@ layer {
 layer {
   name: "Stack: tf.stack_2"
   type: "Stack"
-  bottom: "re_lu_8:0"
   bottom: "re_lu_11:0"
   bottom: "re_lu_10:0"
   bottom: "re_lu_9:0"
+  bottom: "re_lu_8:0"
   top: "tf.stack_2:0"
     scale_param {
     "InputShapes": "169, 169, 169, 169"
@@ -10787,7 +10804,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "768B"
-    "ScheduleId": "833"
+    "ScheduleId": "834"
 
   }
 
@@ -10807,7 +10824,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "256B"
-    "ScheduleId": "838"
+    "ScheduleId": "839"
 
   }
 
@@ -10825,7 +10842,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "768B"
-    "ScheduleId": "834"
+    "ScheduleId": "835"
 
   }
 
@@ -10838,11 +10855,11 @@ layer {
     scale_param {
     "InputShapes": "49, 49"
     "OutputShape": "49"
-    "Quantize[mn,mx]": [0, 0.5]
+    "Quantize[mn,mx]": [0, 1.0]
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_6_x:0"
     "RuntimeMemory": "64B"
-    "ScheduleId": "841"
+    "ScheduleId": "842"
 
   }
   blobs {
@@ -10859,7 +10876,7 @@ layer {
     scale_param {
     "InputShapes": "49"
     "OutputShape": "49"
-    "Quantize[mn,mx]": [0, 0.5]
+    "Quantize[mn,mx]": [0, 1.0]
     "QuantizeBits": 8
     "ConstInputs": "tf.math.subtract_6_x:0"
     "RuntimeMemory": "64B"
@@ -10879,7 +10896,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.subtract_7_x:0"
     "RuntimeMemory": "64B"
-    "ScheduleId": "842"
+    "ScheduleId": "843"
 
   }
   blobs {
@@ -10916,7 +10933,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_6_x:0"
     "RuntimeMemory": "64B"
-    "ScheduleId": "839"
+    "ScheduleId": "840"
 
   }
   blobs {
@@ -10953,7 +10970,7 @@ layer {
     "QuantizeBits": 16
     "ConstInputs": "tf.math.add_7_x:0"
     "RuntimeMemory": "64B"
-    "ScheduleId": "840"
+    "ScheduleId": "841"
 
   }
   blobs {
@@ -10981,10 +10998,10 @@ layer {
 layer {
   name: "Stack: tf.stack_3"
   type: "Stack"
-  bottom: "re_lu_12:0"
-  bottom: "re_lu_14:0"
   bottom: "re_lu_13:0"
   bottom: "re_lu_15:0"
+  bottom: "re_lu_14:0"
+  bottom: "re_lu_12:0"
   top: "tf.stack_3:0"
     scale_param {
     "InputShapes": "49, 49, 49, 49"
@@ -10993,7 +11010,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "256B"
-    "ScheduleId": "843"
+    "ScheduleId": "844"
 
   }
 
@@ -11011,7 +11028,7 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "256B"
-    "ScheduleId": "844"
+    "ScheduleId": "845"
 
   }
 
@@ -11019,10 +11036,10 @@ layer {
 layer {
   name: "Concat: bb_dec_bbox"
   type: "Concat"
-  bottom: "tf.expand_dims_reshaped:0"
-  bottom: "tf.expand_dims_2_reshaped:0"
   bottom: "tf.expand_dims_1_reshaped:0"
+  bottom: "tf.expand_dims_reshaped:0"
   bottom: "tf.expand_dims_3_reshaped:0"
+  bottom: "tf.expand_dims_2_reshaped:0"
   top: "bb_dec_bbox:0"
     scale_param {
     "InputShapes": "2704x1x4, 676x1x4, 169x1x4, 49x1x4"
@@ -11031,7 +11048,7 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "14.13KB"
-    "ScheduleId": "846"
+    "ScheduleId": "847"
 
   }
 
@@ -11048,7 +11065,7 @@ layer {
     "QuantizeBits": 16
     
     "RuntimeMemory": "28.13KB"
-    "ScheduleId": "847"
+    "ScheduleId": "848"
 
   }
 
@@ -11065,7 +11082,7 @@ layer {
     "QuantizeBits": 16
     
     "RuntimeMemory": "28.13KB"
-    "ScheduleId": "848"
+    "ScheduleId": "849"
 
   }
 
@@ -11073,8 +11090,8 @@ layer {
 layer {
   name: "MultiClassNms: tf.image.combined_non_max_suppression"
   type: "MultiClassNms"
-  bottom: "transform-88-tf.image.combined_non_max_suppression_iq0:0"
   bottom: "transform-89-tf.math.sigmoid:0"
+  bottom: "transform-88-tf.image.combined_non_max_suppression_iq0:0"
   top: "tf.image.combined_non_max_suppression:3:3"
   top: "tf.image.combined_non_max_suppression:2:2"
   top: "tf.image.combined_non_max_suppression:1:1"
@@ -11087,16 +11104,16 @@ layer {
     "HasScratch": "true"
     
     "RuntimeMemory": "3.31KB"
-    "ScheduleId": "849"
+    "ScheduleId": "850"
 
   }
 
 }
 layer {
-  name: "Transform: transform-32-tf.image.combined_non_max_suppression"
+  name: "Transform: transform-31-tf.image.combined_non_max_suppression"
   type: "Transform"
   bottom: "tf.image.combined_non_max_suppression:0"
-  top: "transform-32-tf.image.combined_non_max_suppression:0"
+  top: "transform-31-tf.image.combined_non_max_suppression:0"
     scale_param {
     "InputShapes": "300x4"
     "OutputShape": "300x4"
@@ -11104,16 +11121,16 @@ layer {
     "QuantizeBits": 16
     
     "RuntimeMemory": "18.75KB"
-    "ScheduleId": "851"
+    "ScheduleId": "852"
 
   }
 
 }
 layer {
-  name: "Transform: transform-33-tf.image.combined_non_max_suppression"
+  name: "Transform: transform-32-tf.image.combined_non_max_suppression"
   type: "Transform"
   bottom: "tf.image.combined_non_max_suppression:1:1"
-  top: "transform-33-tf.image.combined_non_max_suppression:0"
+  top: "transform-32-tf.image.combined_non_max_suppression:0"
     scale_param {
     "InputShapes": "300"
     "OutputShape": "300"
@@ -11121,16 +11138,16 @@ layer {
     "QuantizeBits": 8
     
     "RuntimeMemory": "320B"
-    "ScheduleId": "853"
+    "ScheduleId": "854"
 
   }
 
 }
 layer {
-  name: "Transform: transform-34-tf.image.combined_non_max_suppression"
+  name: "Transform: transform-33-tf.image.combined_non_max_suppression"
   type: "Transform"
   bottom: "tf.image.combined_non_max_suppression:2:2"
-  top: "transform-34-tf.image.combined_non_max_suppression:0"
+  top: "transform-33-tf.image.combined_non_max_suppression:0"
     scale_param {
     "InputShapes": "300"
     "OutputShape": "300"
@@ -11138,16 +11155,16 @@ layer {
     "QuantizeBits": 16
     
     "RuntimeMemory": "608B"
-    "ScheduleId": "855"
+    "ScheduleId": "856"
 
   }
 
 }
 layer {
-  name: "Transform: transform-35-tf.image.combined_non_max_suppression"
+  name: "Transform: transform-34-tf.image.combined_non_max_suppression"
   type: "Transform"
   bottom: "tf.image.combined_non_max_suppression:3:3"
-  top: "transform-35-tf.image.combined_non_max_suppression:0"
+  top: "transform-34-tf.image.combined_non_max_suppression:0"
     scale_param {
     "InputShapes": "1"
     "OutputShape": "1"
@@ -11155,7 +11172,7 @@ layer {
     "QuantizeBits": 16
     
     "RuntimeMemory": "32B"
-    "ScheduleId": "857"
+    "ScheduleId": "858"
 
   }
 
@@ -11163,7 +11180,7 @@ layer {
 layer {
   name: "Output: Output0"
   type: "Output"
-  bottom: "transform-32-tf.image.combined_non_max_suppression:0"
+  bottom: "transform-31-tf.image.combined_non_max_suppression:0"
   
     scale_param {
     "InputShapes": "300x4"
@@ -11171,7 +11188,7 @@ layer {
     
     
     "RuntimeMemory": "0B"
-    "ScheduleId": "852"
+    "ScheduleId": "853"
 
   }
 
@@ -11180,10 +11197,10 @@ layer {
   name: "Output: output_sync"
   type: "Output"
   bottom: "input_1:0"
-  bottom: "transform-35-tf.image.combined_non_max_suppression:0"
   bottom: "transform-34-tf.image.combined_non_max_suppression:0"
   bottom: "transform-33-tf.image.combined_non_max_suppression:0"
   bottom: "transform-32-tf.image.combined_non_max_suppression:0"
+  bottom: "transform-31-tf.image.combined_non_max_suppression:0"
   
     scale_param {
     "InputShapes": "300x4, 300, 300, 1, 416x416x3"
@@ -11191,13 +11208,29 @@ layer {
     
     
     "RuntimeMemory": "0B"
-    "ScheduleId": "859"
+    "ScheduleId": "860"
 
   }
 
 }
 layer {
   name: "Output: Output1"
+  type: "Output"
+  bottom: "transform-32-tf.image.combined_non_max_suppression:0"
+  
+    scale_param {
+    "InputShapes": "300"
+    
+    
+    
+    "RuntimeMemory": "0B"
+    "ScheduleId": "855"
+
+  }
+
+}
+layer {
+  name: "Output: Output2"
   type: "Output"
   bottom: "transform-33-tf.image.combined_non_max_suppression:0"
   
@@ -11207,23 +11240,7 @@ layer {
     
     
     "RuntimeMemory": "0B"
-    "ScheduleId": "854"
-
-  }
-
-}
-layer {
-  name: "Output: Output2"
-  type: "Output"
-  bottom: "transform-34-tf.image.combined_non_max_suppression:0"
-  
-    scale_param {
-    "InputShapes": "300"
-    
-    
-    
-    "RuntimeMemory": "0B"
-    "ScheduleId": "856"
+    "ScheduleId": "857"
 
   }
 
@@ -11231,7 +11248,7 @@ layer {
 layer {
   name: "Output: Output3"
   type: "Output"
-  bottom: "transform-35-tf.image.combined_non_max_suppression:0"
+  bottom: "transform-34-tf.image.combined_non_max_suppression:0"
   
     scale_param {
     "InputShapes": "1"
@@ -11239,7 +11256,7 @@ layer {
     
     
     "RuntimeMemory": "0B"
-    "ScheduleId": "858"
+    "ScheduleId": "859"
 
   }
 

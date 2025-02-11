@@ -66,8 +66,8 @@ data:
     keep_ratio: False
     pipeline:
       perspective: 0.0
-      scale: [0.2, 1]
-      stretch: [[0.8, 1.2], [0.8, 1.2]]
+      scale: [0.1, 1]
+      stretch: [[0.5, 1.2], [0.5, 1.2]]
       rotation: 10
       shear: 2
       translate: 0.3
@@ -86,12 +86,12 @@ data:
       normalize: [[103.53, 116.28, 123.675], [57.375, 57.12, 58.395]]
 device:
   gpu_ids: [0]
-  workers_per_gpu: 16
+  workers_per_gpu: 20
   batchsize_per_gpu: 64
   precision: 16 # set to 16 to use AMP training
 schedule:
   resume: true
-#  load_model:
+  #load_model:
   optimizer:
     name: AdamW
     lr: 0.001
